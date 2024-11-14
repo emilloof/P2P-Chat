@@ -75,6 +75,19 @@ namespace Demo.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+          
+        }
+        public bool IsGridVisible
+        {
+            get => NetworkManager.IsGridVisible;
+            set
+            {
+                if (NetworkManager.IsGridVisible != value)
+                {
+                    NetworkManager.IsGridVisible = value;
+                    OnPropertyChanged(nameof(IsGridVisible));
+                }
+            }
         }
 
         public MainWindowViewModel(NetworkManager networkManager)
@@ -89,6 +102,10 @@ namespace Demo.ViewModel
             {
                 var message = NetworkManager.Message;
                 this.MyText = message;
+            }
+            else if (e.PropertyName == nameof(NetworkManager.IsGridVisible))
+            {
+                OnPropertyChanged(nameof(IsGridVisible));
             }
         }
 
@@ -109,7 +126,13 @@ namespace Demo.ViewModel
         private bool startConnection(string action)
         {
 
-            Debug.WriteLine($"IPN : { IpAddress}");
+            if (IpAddress == null || Port == null)
+            {
+                IpAddress = null;
+                Port = null;
+                return false;
+            }
+
             NetworkManager.IpAddress = IpAddress;
             NetworkManager.Port = port;
             NetworkManager.Nickname = Nickname;

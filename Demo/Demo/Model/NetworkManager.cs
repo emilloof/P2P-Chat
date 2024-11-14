@@ -26,7 +26,21 @@ namespace Demo.Model
 
             }
         }
+        private bool _isGridVisible;
 
+        // Public property for binding to the UI
+        public bool IsGridVisible
+        {
+            get => _isGridVisible;
+            set
+            {
+                if (_isGridVisible != value)
+                {
+                    _isGridVisible = value;
+                    OnPropertyChanged(nameof(IsGridVisible)); // Notify the UI of the change
+                }
+            }
+        }
         public string IpAddress { get; set; }
         public string Port { get; set; }
         public string Nickname { get; set; }
@@ -47,12 +61,12 @@ namespace Demo.Model
             {
                 
             
-                var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
-                TcpListener server = new TcpListener(ipEndPoint);
-                TcpClient endPoint = null;
+               
                 if (action == "Host")
                 {
-
+                    var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
+                    TcpListener server = new TcpListener(ipEndPoint);
+                    TcpClient endPoint = null;
                     server.Start();
                     System.Diagnostics.Debug.WriteLine("Start listening...");
                     endPoint = server.AcceptTcpClient();
@@ -63,14 +77,25 @@ namespace Demo.Model
 
                 if (action == "Connect")
                 {
-
+                    var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
+                    TcpListener server = new TcpListener(ipEndPoint);
+                    TcpClient endPoint = null;
                     endPoint = new TcpClient();
                     try
                     {
+                        var message = Encoding.UTF8.GetBytes("SHOW_GRID");
+                        endPoint.GetStream().Write(message, 0, message.Length);
+
+                        
                         System.Diagnostics.Debug.WriteLine("Connecting to the server...");
                         endPoint.Connect(ipEndPoint);
                         System.Diagnostics.Debug.WriteLine("Connection established!");
+
+                     
+
                         handleConnection(endPoint);
+                    
+                    
                     }
                     finally                    {
                         endPoint.Close();
@@ -88,11 +113,26 @@ namespace Demo.Model
             stream = endPoint.GetStream();
             while (true)
             {
+
                 var buffer = new byte[1024];
                 int received = stream.Read(buffer, 0, 1024);
                 var message = Encoding.UTF8.GetString(buffer, 0, received);
                 this.Message = message; // ´property change
 
+
+                if (message == "SHOW_GRID")
+                {
+                    // Update IsGridVisible to true on the server instance
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        IsGridVisible = true; // This will update the UI
+                    });
+                }
+                else
+                {
+                    // Process other messages as needed
+                    this.Message = message;
+                }
             }
 
         }
