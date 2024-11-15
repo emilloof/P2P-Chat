@@ -12,6 +12,8 @@ using System.Windows.Input;
 using Demo.Model;
 using Demo.View;
 using Demo.View.Command;
+using Demo.ViewModel.Command;
+using Microsoft.Win32;
 
 namespace Demo.ViewModel
 {
@@ -21,6 +23,7 @@ namespace Demo.ViewModel
         private NetworkManager NetworkManager { get; set; }
         private ICommand startGame;
         private string text;
+        private ICommand requestAccept;
         public string MyText { 
             get {
 
@@ -36,7 +39,17 @@ namespace Demo.ViewModel
         private string ipAddress;
         private string port;
         private string nickname;
+        private string request_message;
 
+        public string Request_message
+        {
+            get { return request_message; }
+            set
+            {
+                request_message = value;
+                OnPropertyChanged("Request_message");
+            }
+        }
         public string IpAddress
         {
             get { return ipAddress; }
@@ -92,6 +105,9 @@ namespace Demo.ViewModel
 
         public MainWindowViewModel(NetworkManager networkManager)
         {
+
+            IpAddress = "127.0.0.1";
+            Port = "8080"; //autofill ip and port for easier testing
             NetworkManager = networkManager;
             networkManager.PropertyChanged += myModel_PropertyChanged;
         }
@@ -107,6 +123,12 @@ namespace Demo.ViewModel
             {
                 OnPropertyChanged(nameof(IsGridVisible));
             }
+            if (e.PropertyName == "Request_message")
+            {
+                open();
+                this.Request_message = NetworkManager.Request_message;
+            }
+
         }
 
         public ICommand StartGame
@@ -120,6 +142,23 @@ namespace Demo.ViewModel
             set
             {
                 startGame = value;
+            }
+        }
+
+        public ICommand RequestAccept
+        {
+            get
+            {
+                if (requestAccept == null)
+                {
+                    requestAccept = new RequestAccept(this); 
+                }
+                return requestAccept;
+            }
+            set
+            {
+                
+                requestAccept = value;
             }
         }
 
@@ -144,19 +183,33 @@ namespace Demo.ViewModel
         public void startGameBoard(string action)
         {
 
-            if (startConnection(action))
+            if (action == "Host")
             {
-                GameBoard board = new GameBoard();
-                board.DataContext = this;
-                board.ShowDialog();
+                if (startConnection(action))
+                {
+                    open();
+                    
+                }
             }
+
+            else if( action == "Connect")
+            {
+                              // if accepted, start the conenction 
+                              //Use enable in xaml to just hde the window before accept
+                startConnection(action);
+            }
+           
             else
             {
                 MessageBox.Show("Cannot start connection!");
             }
-            
-            
-           
+  
+        }
+        public void open()
+        {
+            GameBoard board = new GameBoard();
+            board.DataContext = this;
+            board.Show();
         }
 
         private ICommand enterCommand;
@@ -187,8 +240,13 @@ namespace Demo.ViewModel
             gameBoard.ShowDialog();
         }
 
-        
+        public void answerRequest(bool answer)
+        {
+            NetworkManager.sendAnswer(answer);
+        }
 
 
     }
+
+  
 }

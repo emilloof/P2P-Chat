@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Demo.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -45,6 +47,18 @@ namespace Demo.Model
         public string Port { get; set; }
         public string Nickname { get; set; }
 
+        private string request_message;
+
+        public string Request_message
+        {
+            get { return request_message; }
+            set
+            {
+                request_message = value;
+                OnPropertyChanged("Request_message");
+            }
+        }
+
 
         private string message;
         public string Message
@@ -55,59 +69,81 @@ namespace Demo.Model
 
         public bool startConnection(string action)
         {
-
-
             Task.Factory.StartNew(() =>
             {
-                
-            
-               
                 if (action == "Host")
                 {
-                    var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
-                    TcpListener server = new TcpListener(ipEndPoint);
-                    TcpClient endPoint = null;
-                    server.Start();
-                    System.Diagnostics.Debug.WriteLine("Start listening...");
-                    endPoint = server.AcceptTcpClient();
-                    System.Diagnostics.Debug.WriteLine("Connection accepted!");
-                    handleConnection(endPoint);
-
+                    startHost(); 
                 }
 
                 if (action == "Connect")
                 {
-                    var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
-                    TcpListener server = new TcpListener(ipEndPoint);
-                    TcpClient endPoint = null;
-                    endPoint = new TcpClient();
-                    try
-                    {
-                        var message = Encoding.UTF8.GetBytes("SHOW_GRID");
-                        endPoint.GetStream().Write(message, 0, message.Length);
-
-                        
-                        System.Diagnostics.Debug.WriteLine("Connecting to the server...");
-                        endPoint.Connect(ipEndPoint);
-                        System.Diagnostics.Debug.WriteLine("Connection established!");
-
-                     
-
-                        handleConnection(endPoint);
-                    
-                    
-                    }
-                    finally                    {
-                        endPoint.Close();
-
-                    }
+                    startConnect();
                 }
             });
-
             return true;
+        }
 
+        private void startHost()
+        {
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
+            TcpListener server = new TcpListener(ipEndPoint);
+            TcpClient endPoint = null;
+            server.Start();
+            System.Diagnostics.Debug.WriteLine("Start listening...");
+            endPoint = server.AcceptTcpClient();
+            System.Diagnostics.Debug.WriteLine("Connection accepted!");
+            handleConnection(endPoint);
 
         }
+
+        private bool startConnect()
+        {
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
+            TcpListener server = new TcpListener(ipEndPoint);
+            TcpClient endPoint = null;
+            endPoint = new TcpClient();
+            try
+            {
+                
+                System.Diagnostics.Debug.WriteLine("Connecting to the server...");
+                endPoint.Connect(ipEndPoint);
+                System.Diagnostics.Debug.WriteLine("Connection established!");
+
+                var message = Encoding.UTF8.GetBytes("request");
+                endPoint.GetStream().Write(message, 0, message.Length);
+                stream = endPoint.GetStream();
+                while (true) {
+                    Debug.WriteLine("Enter while loop");
+                    var buffer = new byte[1024];
+                    int received = stream.Read(buffer, 0, 1024);
+                    var answer = Encoding.UTF8.GetString(buffer, 0, received);
+                    Debug.WriteLine("Answer:" + answer.ToString());
+                    if (answer.ToString() == "True")
+                    {
+
+                        break;
+                    }
+                    else if (answer.ToString() == "False")
+                    {
+                        return false;
+                    }
+                }
+
+                handleConnection(endPoint);
+            }
+            finally
+            {
+                endPoint.Close();
+
+            }
+                                                //
+            return false;
+        }
+
+        
+
+
         private void handleConnection(TcpClient endPoint)
         {
             stream = endPoint.GetStream();
@@ -120,11 +156,12 @@ namespace Demo.Model
                 this.Message = message; // ´property change
 
 
-                if (message == "SHOW_GRID")
+                if (message == "request")
                 {
                     // Update IsGridVisible to true on the server instance
                     Application.Current.Dispatcher.Invoke(() =>
                     {
+                        this.Request_message = "DSA";
                         IsGridVisible = true; // This will update the UI
                     });
                 }
@@ -138,6 +175,16 @@ namespace Demo.Model
         }
         public void sendChar(string str)
         {
+            Task.Factory.StartNew(() =>
+            {
+                var buffer = Encoding.UTF8.GetBytes(str);
+                stream.Write(buffer, 0, str.Length);
+            });
+        }
+
+        public void sendAnswer(bool answer)
+        {
+            string str = answer.ToString();
             Task.Factory.StartNew(() =>
             {
                 var buffer = Encoding.UTF8.GetBytes(str);
