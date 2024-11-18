@@ -103,6 +103,18 @@ namespace Demo.ViewModel
             }
         }
 
+        private string _ConnectionGrid;
+        public string ConnectionGrid
+   
+        {
+            get { return _ConnectionGrid; }
+            set
+            {
+                _ConnectionGrid = value;
+                OnPropertyChanged(nameof(ConnectionGrid));
+            }
+        }
+
         public MainWindowViewModel(NetworkManager networkManager)
         {
 
@@ -125,8 +137,12 @@ namespace Demo.ViewModel
             }
             if (e.PropertyName == "Request_message")
             {
-                open();
                 this.Request_message = NetworkManager.Request_message;
+            }
+            else if (e.PropertyName == "ConnectionGrid")
+            {
+                OnPropertyChanged(nameof(ConnectionGrid));
+                this.ConnectionGrid = NetworkManager.ConnectionGrid;
             }
 
         }
@@ -194,9 +210,12 @@ namespace Demo.ViewModel
 
             else if( action == "Connect")
             {
-                              // if accepted, start the conenction 
-                              //Use enable in xaml to just hde the window before accept
+                // if accepted, start the conenction 
+                //Use enable in xaml to just hde the window before accept
+
+                ConnectionGrid = "False";
                 startConnection(action);
+                open();
             }
            
             else
@@ -243,6 +262,9 @@ namespace Demo.ViewModel
         public void answerRequest(bool answer)
         {
             NetworkManager.sendAnswer(answer);
+
+
+
         }
 
 
