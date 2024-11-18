@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo.View" xmlns:model="clr-namespace:Demo.Model" d:DataContext="{d:DesignInstance Type=model:NetworkManager}"
         mc:Ignorable="d"
-        Title="GameBoard" Height="400" Width="400">
+        Title="GameBoard" Height="600" Width="600">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
@@ -29,7 +29,7 @@
             </TextBox.InputBindings>
 
         </TextBox>
-        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,201,8,-164">
+        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,338,72,-164">
             <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,85,0,0" VerticalAlignment="Top"/>
             <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,84,0,0" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="179,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>

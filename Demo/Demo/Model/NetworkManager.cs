@@ -176,6 +176,7 @@ namespace Demo.Model
                                 else if (proto.Answer == "False")
                                 {
                                     Debug.WriteLine("Received 'False' answer. Aborting connection.");
+                                    this.Message = "Host denied your request";
 
                                     return false;  // Return false if the answer is "False"
                                 }
@@ -191,7 +192,7 @@ namespace Demo.Model
                         Debug.WriteLine($"JSON deserialization error: {ex.Message}");
                     }
                 }
-                Debug.WriteLine("FIUCK");
+                this.Message = "";
                 handleConnection(endPoint);
             }
             finally
@@ -268,6 +269,8 @@ namespace Demo.Model
 
         public void sendAnswer(bool answer)
         {
+            this.IsGridVisible = false;
+
             string str = answer.ToString();
             Task.Factory.StartNew(() =>
             {
