@@ -10,7 +10,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
 
-    <Grid Margin="0,0,5,174" RenderTransformOrigin="0.5,0.5">
+    <Grid Margin="0,0,5,174" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>

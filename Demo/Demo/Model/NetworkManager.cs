@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
 
 namespace Demo.Model
 {
@@ -42,6 +43,27 @@ namespace Demo.Model
                     OnPropertyChanged(nameof(IsGridVisible)); // Notify the UI of the change
                 }
             }
+        }
+
+        private string _ConnectionGrid;
+        public string ConnectionGrid
+        {
+            get { return _ConnectionGrid; }
+            set
+            {
+               _ConnectionGrid= value;
+                OnPropertyChanged("ConnectionGrid");
+            }
+        }
+
+
+        public class Protocol
+        {
+            public string Name { get; set; }
+            public string Request { get; set; }
+
+            public string Message { get; set; }
+            public string Answer { get; set; }
         }
         public string IpAddress { get; set; }
         public string Port { get; set; }
@@ -89,16 +111,19 @@ namespace Demo.Model
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
             TcpListener server = new TcpListener(ipEndPoint);
             TcpClient endPoint = null;
+
             server.Start();
-            System.Diagnostics.Debug.WriteLine("Start listening...");
+            Debug.WriteLine("Start listening...");
             endPoint = server.AcceptTcpClient();
-            System.Diagnostics.Debug.WriteLine("Connection accepted!");
+            Debug.WriteLine("Connection accepted!");
             handleConnection(endPoint);
 
         }
 
         private bool startConnect()
         {
+
+            this.Message = "Trying to connect";
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
             TcpListener server = new TcpListener(ipEndPoint);
             TcpClient endPoint = null;
@@ -106,30 +131,67 @@ namespace Demo.Model
             try
             {
                 
-                System.Diagnostics.Debug.WriteLine("Connecting to the server...");
+                Debug.WriteLine("Connecting to the server...");
                 endPoint.Connect(ipEndPoint);
-                System.Diagnostics.Debug.WriteLine("Connection established!");
+                Debug.WriteLine("Connection established!");
 
-                var message = Encoding.UTF8.GetBytes("request");
+
+                Protocol p = new Protocol { Name = Nickname, Request = "request" };
+                string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
+                var message = Encoding.UTF8.GetBytes(jsonString);
+
+
                 endPoint.GetStream().Write(message, 0, message.Length);
                 stream = endPoint.GetStream();
                 while (true) {
+
                     Debug.WriteLine("Enter while loop");
                     var buffer = new byte[1024];
                     int received = stream.Read(buffer, 0, 1024);
-                    var answer = Encoding.UTF8.GetString(buffer, 0, received);
-                    Debug.WriteLine("Answer:" + answer.ToString());
-                    if (answer.ToString() == "True")
+                    if (received == 0)
                     {
-
-                        break;
+                        Debug.WriteLine("No data received. Closing connection.");
+                        break;  // No data received, break the loop
                     }
-                    else if (answer.ToString() == "False")
+                    string answer = Encoding.UTF8.GetString(buffer, 0, received);
+                    try
                     {
-                        return false;
+                        // If the answer is not empty, attempt to deserialize it
+                        if (!string.IsNullOrEmpty(answer))
+                        {
+                            Protocol proto = JsonConvert.DeserializeObject<Protocol>(answer);
+
+                            if (proto != null)
+                            {
+                                Debug.WriteLine($"Received answer: {proto.Answer}");
+
+                                if (proto.Answer == "True")
+                                {
+                                    //PROPERTY CHANGE TO ENABLE CHAT
+                                    this.ConnectionGrid = "True";
+
+                                    Debug.WriteLine("Received 'True' answer. Proceeding.");
+                                    break;  // Exit the loop if the answer is "True"
+                                }
+                                else if (proto.Answer == "False")
+                                {
+                                    Debug.WriteLine("Received 'False' answer. Aborting connection.");
+
+                                    return false;  // Return false if the answer is "False"
+                                }
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Failed to deserialize answer.");
+                            }
+                        }
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        Debug.WriteLine($"JSON deserialization error: {ex.Message}");
                     }
                 }
-
+                Debug.WriteLine("FIUCK");
                 handleConnection(endPoint);
             }
             finally
@@ -152,23 +214,41 @@ namespace Demo.Model
 
                 var buffer = new byte[1024];
                 int received = stream.Read(buffer, 0, 1024);
-                var message = Encoding.UTF8.GetString(buffer, 0, received);
-                this.Message = message; // ´property change
-
-
-                if (message == "request")
+                string message = Encoding.UTF8.GetString(buffer, 0, received);
+                try
                 {
-                    // Update IsGridVisible to true on the server instance
-                    Application.Current.Dispatcher.Invoke(() =>
+                    Protocol p = null;
+
+                    if (!string.IsNullOrEmpty(message))
                     {
-                        this.Request_message = "DSA";
-                        IsGridVisible = true; // This will update the UI
-                    });
+                        Debug.WriteLine("Raw Message: " + message);
+                        p = JsonConvert.DeserializeObject<Protocol>(message);
+                    }
+
+                    if (p?.Request == "request")
+                    {
+                        // Update IsGridVisible to true on the server instance
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            Debug.WriteLine("SHOW GRID");
+                            this.Request_message = "Chat request sent by: " + p.Name;
+                            this.IsGridVisible = true; // This will update the UI
+                        });
+
+                    }
+                    else
+                    {
+                        // Process other messages as needed
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            this.Message = p.Message;
+                        });
+                    }
                 }
-                else
+                catch (JsonReaderException)
                 {
-                    // Process other messages as needed
-                    this.Message = message;
+
                 }
             }
 
@@ -177,8 +257,12 @@ namespace Demo.Model
         {
             Task.Factory.StartNew(() =>
             {
+                Protocol p = new Protocol { Name = Nickname, Request = "message", Message = str };
+                string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
+                var message = Encoding.UTF8.GetBytes(jsonString);
                 var buffer = Encoding.UTF8.GetBytes(str);
-                stream.Write(buffer, 0, str.Length);
+
+                stream.Write(message, 0, message.Length);
             });
         }
 
@@ -187,8 +271,12 @@ namespace Demo.Model
             string str = answer.ToString();
             Task.Factory.StartNew(() =>
             {
+                Protocol p = new Protocol { Name = Nickname, Request = "requestAnswer", Answer = str };
+                string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
+                var message = Encoding.UTF8.GetBytes(jsonString);
                 var buffer = Encoding.UTF8.GetBytes(str);
-                stream.Write(buffer, 0, str.Length);
+
+                stream.Write(message, 0, message.Length);
             });
         }
     }
