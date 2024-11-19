@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Demo.ViewModel
         private ICommand startGame;
         private string text;
         private ICommand requestAccept;
+        public ObservableCollection<string> ChatMessages { get; set; }
+
         public string MyText { 
             get {
 
@@ -120,6 +123,7 @@ namespace Demo.ViewModel
 
             IpAddress = "127.0.0.1";
             Port = "8080"; //autofill ip and port for easier testing
+            ChatMessages = new ObservableCollection<string>();
             NetworkManager = networkManager;
             networkManager.PropertyChanged += myModel_PropertyChanged;
         }
@@ -128,8 +132,8 @@ namespace Demo.ViewModel
         {
             if (e.PropertyName == "Message")
             {
-                var message = NetworkManager.Message;
-                this.MyText = message;
+                var message = NetworkManager.Message; 
+                addMessageToChat(message.Message);
             }
             else if (e.PropertyName == nameof(NetworkManager.IsGridVisible))
             {
@@ -249,26 +253,23 @@ namespace Demo.ViewModel
 
         public void sendMessage()
         {
+            ChatMessages.Add(MyText);
             NetworkManager.sendChar(MyText);
-        }
-
-        public void showGameBoard()
-        {
-            GameBoard gameBoard = new GameBoard();
-            gameBoard.DataContext = this;
-            gameBoard.ShowDialog();
+            MyText = "";
         }
 
         public void answerRequest(bool answer)
         {
             NetworkManager.sendAnswer(answer);
-
-
-
         }
 
+        private void addMessageToChat(string message)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                ChatMessages.Add(message);
+            });
+        }
 
     }
-
-  
 }

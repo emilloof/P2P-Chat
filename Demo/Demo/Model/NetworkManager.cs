@@ -14,6 +14,15 @@ using Newtonsoft.Json;
 
 namespace Demo.Model
 {
+    //Kan man ha detta synligt för viewmodeln?
+    public class Protocol
+        {
+            public string Name { get; set; }
+            public string Request { get; set; }
+
+            public string Message { get; set; }
+            public string Answer { get; set; }
+        }
     internal class NetworkManager : INotifyPropertyChanged
     {
 
@@ -57,14 +66,7 @@ namespace Demo.Model
         }
 
 
-        public class Protocol
-        {
-            public string Name { get; set; }
-            public string Request { get; set; }
-
-            public string Message { get; set; }
-            public string Answer { get; set; }
-        }
+        
         public string IpAddress { get; set; }
         public string Port { get; set; }
         public string Nickname { get; set; }
@@ -82,8 +84,8 @@ namespace Demo.Model
         }
 
 
-        private string message;
-        public string Message
+        private Protocol message;
+        public Protocol Message
         {
             get { return message; }
             set { message = value; OnPropertyChanged("Message"); }
@@ -123,7 +125,7 @@ namespace Demo.Model
         private bool startConnect()
         {
 
-            this.Message = "Trying to connect";
+           // this.Message = "Trying to connect";
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
             TcpListener server = new TcpListener(ipEndPoint);
             TcpClient endPoint = null;
@@ -176,7 +178,7 @@ namespace Demo.Model
                                 else if (proto.Answer == "False")
                                 {
                                     Debug.WriteLine("Received 'False' answer. Aborting connection.");
-                                    this.Message = "Host denied your request";
+                                    //this.Message = "Host denied your request";
 
                                     return false;  // Return false if the answer is "False"
                                 }
@@ -192,7 +194,7 @@ namespace Demo.Model
                         Debug.WriteLine($"JSON deserialization error: {ex.Message}");
                     }
                 }
-                this.Message = "";
+              //  this.Message = "";
                 handleConnection(endPoint);
             }
             finally
@@ -243,7 +245,7 @@ namespace Demo.Model
                         // Process other messages as needed
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            this.Message = p.Message;
+                            this.Message = p;
                         });
                     }
                 }

@@ -10,7 +10,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
 
-    <Grid Margin="0,0,5,174" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+    <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -23,16 +23,29 @@
             <ColumnDefinition Width="243*"/>
             <ColumnDefinition Width="157*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Text="{Binding Path=MyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="359" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="10,10,0,0" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Grid.ColumnSpan="2"  >
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,257">
+            <StackPanel x:Name="MessagesPanel" Orientation="Vertical">
+                <ItemsControl ItemsSource="{Binding ChatMessages}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBox Text="{Binding Path=MyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="10,329,0,0" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" Grid.ColumnSpan="2"  >
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding Path=EnterCommand}" Key="Enter" />
             </TextBox.InputBindings>
 
         </TextBox>
-        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,338,72,-164">
-            <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,85,0,0" VerticalAlignment="Top"/>
-            <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,84,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="179,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
+        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
+            <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top"/>
+            <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
         </Grid>
+        
     </Grid>
 </Window>

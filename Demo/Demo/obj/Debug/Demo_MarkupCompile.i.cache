@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-X:\tddd49\Demo\Demo\obj\Debug\
+C:\Users\emill\tddd49\Demo\Demo\obj\Debug\
 Demo
 none
 false
 DEBUG;TRACE
-X:\tddd49\Demo\Demo\App.xaml
+C:\Users\emill\tddd49\Demo\Demo\App.xaml
 21375110636
 
 121830830036
-252065869523
+25-721974589
 MainWindow.xaml;View\GameBoard.xaml;
 
 True
