@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
+using System.Windows.Markup;
+using System.Net.Http;
+using System.IO;
 
 namespace Demo.Model
 {
@@ -22,6 +25,8 @@ namespace Demo.Model
 
             public string Message { get; set; }
             public string Answer { get; set; }
+
+            public DateTime DateTime { get; set; }
         }
     internal class NetworkManager : INotifyPropertyChanged
     {
@@ -134,7 +139,17 @@ namespace Demo.Model
             {
                 
                 Debug.WriteLine("Connecting to the server...");
-                endPoint.Connect(ipEndPoint);
+                try
+                {
+                    endPoint.Connect(ipEndPoint);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("SADASDA");
+                    Protocol noHost = new Protocol { Request = "no_host" };
+                    this.Message = noHost;
+                    return false;
+                }
                 Debug.WriteLine("Connection established!");
 
 
@@ -171,14 +186,17 @@ namespace Demo.Model
                                 {
                                     //PROPERTY CHANGE TO ENABLE CHAT
                                     this.ConnectionGrid = "True";
+                                    Protocol accept = new Protocol { Request = "accept_connect" };
+                                    this.Message = accept;
 
-                                    Debug.WriteLine("Received 'True' answer. Proceeding.");
-                                    break;  // Exit the loop if the answer is "True"
+
+                                    break;  
                                 }
                                 else if (proto.Answer == "False")
                                 {
-                                    Debug.WriteLine("Received 'False' answer. Aborting connection.");
-                                    //this.Message = "Host denied your request";
+                         
+                                    Protocol denied = new Protocol { Request = "denied_connect" };
+                                    this.Message = denied;
 
                                     return false;  // Return false if the answer is "False"
                                 }
@@ -202,7 +220,7 @@ namespace Demo.Model
                 endPoint.Close();
 
             }
-                                                //
+                                    
             return false;
         }
 
@@ -214,45 +232,66 @@ namespace Demo.Model
             stream = endPoint.GetStream();
             while (true)
             {
-
-                var buffer = new byte[1024];
-                int received = stream.Read(buffer, 0, 1024);
-                string message = Encoding.UTF8.GetString(buffer, 0, received);
                 try
                 {
-                    Protocol p = null;
+                    var buffer = new byte[1024];
+                    int received = stream.Read(buffer, 0, 1024);
+                    string message = Encoding.UTF8.GetString(buffer, 0, received);
 
-                    if (!string.IsNullOrEmpty(message))
+                    if (received == 0)
                     {
-                        Debug.WriteLine("Raw Message: " + message);
-                        p = JsonConvert.DeserializeObject<Protocol>(message);
+                        Debug.WriteLine("Connection closed by peer.");
+                        break; // Exit loop when the connection is closed
                     }
 
-                    if (p?.Request == "request")
+                    try
                     {
-                        // Update IsGridVisible to true on the server instance
+                        Protocol p = null;
 
-                        Application.Current.Dispatcher.Invoke(() =>
+                        if (!string.IsNullOrEmpty(message))
                         {
-                            Debug.WriteLine("SHOW GRID");
-                            this.Request_message = "Chat request sent by: " + p.Name;
-                            this.IsGridVisible = true; // This will update the UI
-                        });
+                            p = JsonConvert.DeserializeObject<Protocol>(message);
+                        }
 
+                        if (p?.Request == "request")
+                        {
+                            // Update IsGridVisible to true on the server instance
+
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                Debug.WriteLine("SHOW GRID");
+                                this.Request_message = "Chat request sent by: " + p.Name;
+                                this.IsGridVisible = true; // This will update the UI
+                            });
+
+                        }
+                        else
+                        {
+                            
+                            // Process other messages 
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                p.DateTime = DateTime.Now;
+                                this.Message = p;
+                            });
+                        }
                     }
-                    else
+                    catch (JsonReaderException)
                     {
-                        // Process other messages as needed
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            this.Message = p;
-                        });
+
                     }
                 }
-                catch (JsonReaderException)
+                catch (IOException ex)
                 {
-
+                    Debug.WriteLine($"IOException (likely disconnected): {ex.Message}");
+                    break; // Exit loop on disconnection or error
                 }
+                catch (SocketException ex)
+                {
+                    Debug.WriteLine($"SocketException (likely disconnected): {ex.Message}");
+                    break; // Exit loop on socket error
+                }
+
             }
 
         }

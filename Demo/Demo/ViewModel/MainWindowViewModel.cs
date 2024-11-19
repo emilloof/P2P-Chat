@@ -16,6 +16,7 @@ using Demo.View.Command;
 using Demo.ViewModel.Command;
 using Microsoft.Win32;
 
+
 namespace Demo.ViewModel
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
@@ -84,7 +85,11 @@ namespace Demo.ViewModel
         }
 
 
+        
+
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged != null)
@@ -132,8 +137,20 @@ namespace Demo.ViewModel
         {
             if (e.PropertyName == "Message")
             {
+
                 var message = NetworkManager.Message; 
-                addMessageToChat(message.Message);
+
+                if (message.Request == "denied_connect") { MyText = "Host denied your request. Please close window."; }
+
+                else if (message.Request == "accept_connect") { MyText = ""; }
+
+                else if (message.Request == "no_host") { MyText = "No host waiting on the IP or port you tried. Try again."; }
+                else
+                {
+                    string mes = message.Name + message.DateTime.ToString() + "\n" + message.Message;
+                    addMessageToChat(mes);
+                }
+               
             }
             else if (e.PropertyName == nameof(NetworkManager.IsGridVisible))
             {
@@ -216,7 +233,7 @@ namespace Demo.ViewModel
             {
                 // if accepted, start the conenction 
                 //Use enable in xaml to just hde the window before accept
-
+                MyText = "Trying to connect to host";
                 ConnectionGrid = "False";
                 startConnection(action);
                 open();
@@ -253,7 +270,9 @@ namespace Demo.ViewModel
 
         public void sendMessage()
         {
-            ChatMessages.Add(MyText);
+            DateTime date = DateTime.Now;
+            string mes = Nickname + date.ToString() + "\n" + MyText;
+            ChatMessages.Add(mes);
             NetworkManager.sendChar(MyText);
             MyText = "";
         }

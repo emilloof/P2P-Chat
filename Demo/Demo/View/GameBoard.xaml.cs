@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,12 @@ namespace Demo.View
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+        
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            
+            base.OnClosing(e);
         }
     }
 }
