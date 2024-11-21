@@ -3,52 +3,16 @@
   "WorkspaceRootPath": "X:\\tddd49\\Demo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|X:\\tddd49\\Demo\\Demo\\Data\\Data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Demo\\Data\\Data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\view\\gameboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\view\\gameboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|X:\\tddd49\\Demo\\Demo\\Model\\NetworkManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Demo\\Model\\NetworkManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\model\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\model\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\view\\gameboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\view\\gameboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\viewmodel\\command\\startgamecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\startgamecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\viewmodel\\command\\keyentercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\keyentercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\viewmodel\\command\\requestaccept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\requestaccept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\demo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,148 +27,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindowViewModel.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
-              "RelativeDocumentMoniker": "Demo\\ViewModel\\MainWindowViewModel.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
-              "RelativeToolTip": "Demo\\ViewModel\\MainWindowViewModel.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAswIYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:27:23.519Z",
+              "Title": "Data.json",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
+              "RelativeDocumentMoniker": "Demo\\Data\\Data.json",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
+              "RelativeToolTip": "Demo\\Data\\Data.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-21T15:07:07.49Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "NetworkManager.cs",
               "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\Model\\NetworkManager.cs",
               "RelativeDocumentMoniker": "Demo\\Model\\NetworkManager.cs",
               "ToolTip": "X:\\tddd49\\Demo\\Demo\\Model\\NetworkManager.cs",
               "RelativeToolTip": "Demo\\Model\\NetworkManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOgAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAADwvxgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:28:51.831Z"
+              "WhenOpened": "2024-11-21T13:14:20.012Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GameBoard.xaml",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml",
-              "RelativeDocumentMoniker": "Demo\\View\\GameBoard.xaml",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml",
-              "RelativeToolTip": "Demo\\View\\GameBoard.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-14T09:27:28.101Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "KeyEnterCommand.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
-              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
-              "RelativeToolTip": "Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\MainWindowViewModel.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\MainWindowViewModel.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T14:33:28.661Z"
+              "WhenOpened": "2024-11-21T13:17:37.026Z"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameBoard.xaml.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml.cs",
-              "RelativeDocumentMoniker": "Demo\\View\\GameBoard.xaml.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml.cs",
-              "RelativeToolTip": "Demo\\View\\GameBoard.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T13:42:05.088Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "StartGameCommand.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\StartGameCommand.cs",
-              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\StartGameCommand.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\StartGameCommand.cs",
-              "RelativeToolTip": "Demo\\ViewModel\\Command\\StartGameCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T14:33:33.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.config",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\App.config",
-              "RelativeDocumentMoniker": "Demo\\App.config",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\App.config",
-              "RelativeToolTip": "Demo\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-11-15T13:06:46.267Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Demo\\MainWindow.xaml",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml",
-              "RelativeToolTip": "Demo\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-15T12:47:52.89Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "App.xaml",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\App.xaml",
-              "RelativeDocumentMoniker": "Demo\\App.xaml",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\App.xaml",
-              "RelativeToolTip": "Demo\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-15T12:47:53.683Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Demo\\MainWindow.xaml.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Demo\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T12:47:59.052Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RequestAccept.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\RequestAccept.cs",
-              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\RequestAccept.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\RequestAccept.cs",
-              "RelativeToolTip": "Demo\\ViewModel\\Command\\RequestAccept.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T14:34:02.188Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\Properties\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "Demo\\Properties\\AssemblyInfo.cs",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\Properties\\AssemblyInfo.cs",
-              "RelativeToolTip": "Demo\\Properties\\AssemblyInfo.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T13:32:36.788Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

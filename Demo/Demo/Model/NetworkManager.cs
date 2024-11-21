@@ -15,17 +15,34 @@ using System.Windows.Markup;
 using System.Net.Http;
 using System.IO;
 
+
 namespace Demo.Model
 {
-    //Kan man ha detta synligt för viewmodeln?
-    public class Protocol
+
+    public class Chat
+    {
+        public Guid ChatID { get; set; }
+
+        public string Name { get; set; }
+
+        public List<Messages> Messages { get; set; }
+
+
+
+        public Chat()
+        {
+            ChatID = Guid.NewGuid();  // Generate a unique ID
+            Messages = new List<Messages>();
+        }
+
+    }
+
+    public class Messages
         {
             public string Name { get; set; }
-            public string Request { get; set; }
-
+            public string RequestType { get; set; }
             public string Message { get; set; }
             public string Answer { get; set; }
-
             public DateTime DateTime { get; set; }
         }
     internal class NetworkManager : INotifyPropertyChanged
@@ -34,6 +51,8 @@ namespace Demo.Model
         private NetworkStream stream;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private Chat chat;
 
         private void OnPropertyChanged(string propertyName = "") // raiser the property change
         {
@@ -89,8 +108,8 @@ namespace Demo.Model
         }
 
 
-        private Protocol message;
-        public Protocol Message
+        private Messages message;
+        public Messages Message
         {
             get { return message; }
             set { message = value; OnPropertyChanged("Message"); }
@@ -123,14 +142,16 @@ namespace Demo.Model
             Debug.WriteLine("Start listening...");
             endPoint = server.AcceptTcpClient();
             Debug.WriteLine("Connection accepted!");
+            chat = new Chat();
             handleConnection(endPoint);
+
+
+
 
         }
 
         private bool startConnect()
         {
-
-           // this.Message = "Trying to connect";
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
             TcpListener server = new TcpListener(ipEndPoint);
             TcpClient endPoint = null;
@@ -145,15 +166,14 @@ namespace Demo.Model
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine("SADASDA");
-                    Protocol noHost = new Protocol { Request = "no_host" };
+                    Messages noHost = new Messages { RequestType = "no_host" };
                     this.Message = noHost;
                     return false;
                 }
                 Debug.WriteLine("Connection established!");
 
 
-                Protocol p = new Protocol { Name = Nickname, Request = "request" };
+                Messages p = new Messages { Name = Nickname, RequestType = "request" };
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
 
@@ -176,26 +196,25 @@ namespace Demo.Model
                         // If the answer is not empty, attempt to deserialize it
                         if (!string.IsNullOrEmpty(answer))
                         {
-                            Protocol proto = JsonConvert.DeserializeObject<Protocol>(answer);
+                            Messages proto = JsonConvert.DeserializeObject<Messages>(answer);
 
                             if (proto != null)
                             {
-                                Debug.WriteLine($"Received answer: {proto.Answer}");
-
                                 if (proto.Answer == "True")
                                 {
                                     //PROPERTY CHANGE TO ENABLE CHAT
                                     this.ConnectionGrid = "True";
-                                    Protocol accept = new Protocol { Request = "accept_connect" };
+                                    Messages accept = new Messages { RequestType = "accept_connect" };
                                     this.Message = accept;
 
+                                    chat = new Chat(); 
+                                    
 
                                     break;  
                                 }
                                 else if (proto.Answer == "False")
                                 {
-                         
-                                    Protocol denied = new Protocol { Request = "denied_connect" };
+                                    Messages denied = new Messages { RequestType = "denied_connect" };
                                     this.Message = denied;
 
                                     return false;  // Return false if the answer is "False"
@@ -246,14 +265,14 @@ namespace Demo.Model
 
                     try
                     {
-                        Protocol p = null;
+                        Messages p = null;
 
                         if (!string.IsNullOrEmpty(message))
                         {
-                            p = JsonConvert.DeserializeObject<Protocol>(message);
+                            p = JsonConvert.DeserializeObject<Messages>(message);
                         }
 
-                        if (p?.Request == "request")
+                        if (p?.RequestType == "request")
                         {
                             // Update IsGridVisible to true on the server instance
 
@@ -271,7 +290,10 @@ namespace Demo.Model
                             // Process other messages 
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                p.DateTime = DateTime.Now;
+                               
+                                chat.Messages.Add(p);
+                             //   string jsonString = JsonConvert.SerializeObject(chat, Formatting.Indented);
+                              //  File.WriteAllText("X:\\tddd49\\Demo\\Demo\\Data\\Data.json", jsonString);
                                 this.Message = p;
                             });
                         }
@@ -299,7 +321,8 @@ namespace Demo.Model
         {
             Task.Factory.StartNew(() =>
             {
-                Protocol p = new Protocol { Name = Nickname, Request = "message", Message = str };
+                Messages p = new Messages { Name = Nickname, RequestType = "message", Message = str };
+                p.DateTime = DateTime.Now;
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
                 var buffer = Encoding.UTF8.GetBytes(str);
@@ -315,7 +338,7 @@ namespace Demo.Model
             string str = answer.ToString();
             Task.Factory.StartNew(() =>
             {
-                Protocol p = new Protocol { Name = Nickname, Request = "requestAnswer", Answer = str };
+                Messages p = new Messages { Name = Nickname, RequestType = "requestAnswer", Answer = str };
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
                 var buffer = Encoding.UTF8.GetBytes(str);

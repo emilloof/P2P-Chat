@@ -49,5 +49,26 @@
         </Grid>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="76,40,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
 
+
+
+
+
+
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="304" Margin="34,133,0,0" VerticalAlignment="Top" Width="143">
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+                <StackPanel x:Name="MessagesPane" Orientation="Vertical">
+                    <ItemsControl ItemsSource="{Binding ChatMessages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+        </Grid>
+
+
     </Grid>
 </Window>

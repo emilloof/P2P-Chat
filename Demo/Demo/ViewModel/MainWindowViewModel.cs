@@ -140,11 +140,11 @@ namespace Demo.ViewModel
 
                 var message = NetworkManager.Message; 
 
-                if (message.Request == "denied_connect") { MyText = "Host denied your request. Please close window."; }
+                if (message.RequestType == "denied_connect") { MyText = "Host denied your request. Please close window."; }
 
-                else if (message.Request == "accept_connect") { MyText = ""; }
+                else if (message.RequestType == "accept_connect") { MyText = ""; }
 
-                else if (message.Request == "no_host") { MyText = "No host waiting on the IP or port you tried. Try again."; }
+                else if (message.RequestType == "no_host") { MyText = "No host waiting on the IP or port you tried. Try again."; }
                 else
                 {
                     string mes = message.Name + message.DateTime.ToString() + "\n" + message.Message;
