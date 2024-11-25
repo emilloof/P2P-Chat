@@ -2,59 +2,67 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+
+
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo.View" xmlns:model="clr-namespace:Demo.Model" d:DataContext="{d:DesignInstance Type=model:NetworkManager}"
         mc:Ignorable="d"
         Title="GameBoard" Height="600" Width="600">
 
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding DisconnectCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
-    <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform/>
-                <SkewTransform/>
-                <RotateTransform Angle="0.332"/>
-                <TranslateTransform/>
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="243*"/>
-            <ColumnDefinition Width="157*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,257">
-            <StackPanel x:Name="MessagesPanel" Orientation="Vertical">
-                <ItemsControl ItemsSource="{Binding ChatMessages}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </ScrollViewer>
-        <TextBox Text="{Binding Path=MyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="354" Margin="10,329,0,0" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"  >
-            <TextBox.InputBindings>
-                <KeyBinding Command="{Binding Path=EnterCommand}" Key="Enter" />
-            </TextBox.InputBindings>
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.332"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="243*"/>
+                <ColumnDefinition Width="157*"/>
+            </Grid.ColumnDefinitions>
 
-        </TextBox>
-        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
-            <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top"/>
-            <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,257">
+                <StackPanel x:Name="MessagesPanel" Orientation="Vertical">
+                    <ItemsControl ItemsSource="{Binding ChatMessages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+            <TextBox Text="{Binding Path=MyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="354" Margin="10,329,0,0" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"  >
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding Path=EnterCommand}" Key="Enter" />
+                </TextBox.InputBindings>
+
+            </TextBox>
+            <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
+                <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top"/>
+                <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
+            </Grid>
+
         </Grid>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="76,40,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
 
-
-
-
-
-
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="304" Margin="34,133,0,0" VerticalAlignment="Top" Width="143">
+        <Grid HorizontalAlignment="Left" Height="304" Margin="397,157,0,0" VerticalAlignment="Top" Width="143">
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
                 <StackPanel x:Name="MessagesPane" Orientation="Vertical">
                     <ItemsControl ItemsSource="{Binding ChatMessages}">
@@ -68,7 +76,5 @@
             </ScrollViewer>
 
         </Grid>
-
-
     </Grid>
 </Window>

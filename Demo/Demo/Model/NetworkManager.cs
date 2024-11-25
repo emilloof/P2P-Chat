@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Windows.Markup;
 using System.Net.Http;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 
 namespace Demo.Model
@@ -243,7 +244,23 @@ namespace Demo.Model
             return false;
         }
 
-        
+
+        public void HandleDisconnection(string reason)
+        {
+            try
+            {
+                Debug.WriteLine($"Disconnection triggered: {reason}");
+
+                // Perform cleanup
+                stream?.Close(); // Close the stream
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error during disconnection: {ex.Message}");
+            }
+        }
+
+
 
 
         private void handleConnection(TcpClient endPoint)
@@ -259,7 +276,13 @@ namespace Demo.Model
 
                     if (received == 0)
                     {
+                        Messages disconnect = new Messages { RequestType = "disconnected" };
+                        this.Message = disconnect;
+                        this.ConnectionGrid = "False";
+
                         Debug.WriteLine("Connection closed by peer.");
+                        
+                     
                         break; // Exit loop when the connection is closed
                     }
 
@@ -292,8 +315,17 @@ namespace Demo.Model
                             {
                                
                                 chat.Messages.Add(p);
-                             //   string jsonString = JsonConvert.SerializeObject(chat, Formatting.Indented);
-                              //  File.WriteAllText("X:\\tddd49\\Demo\\Demo\\Data\\Data.json", jsonString);
+                                /*
+                                string jsonString = JsonConvert.SerializeObject(chat, Formatting.Indented);
+
+                                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
+                                string relativePath = "Data\\Data.json";
+
+                                Debug.WriteLine(basePath + relativePath);
+                                string fullPath = Path.Combine(basePath, relativePath);
+                                File.WriteAllText(fullPath, jsonString);
+                                */
+
                                 this.Message = p;
                             });
                         }

@@ -26,6 +26,8 @@ namespace Demo.ViewModel
         private ICommand startGame;
         private string text;
         private ICommand requestAccept;
+        private ICommand disconnect;
+
         public ObservableCollection<string> ChatMessages { get; set; }
 
         public string MyText { 
@@ -123,6 +125,22 @@ namespace Demo.ViewModel
             }
         }
 
+        public ICommand DisconnectCommand {
+            get
+            {
+                if (disconnect == null)
+                {
+                    return new DisconnectCommand(this);
+                }
+                else
+                {
+                    return disconnect;
+
+                }
+            }
+            set { disconnect = value; }
+        }
+
         public MainWindowViewModel(NetworkManager networkManager)
         {
 
@@ -131,7 +149,16 @@ namespace Demo.ViewModel
             ChatMessages = new ObservableCollection<string>();
             NetworkManager = networkManager;
             networkManager.PropertyChanged += myModel_PropertyChanged;
+            //DisconnectCommand = new DisconnectCommand(this);
         }
+
+        public void Disconnect()
+        {
+            NetworkManager.HandleDisconnection("GameBoard closed via MVVM pattern");
+        }
+
+
+
 
         private void myModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) // så det märker raiseat
         {
@@ -143,6 +170,8 @@ namespace Demo.ViewModel
                 if (message.RequestType == "denied_connect") { MyText = "Host denied your request. Please close window."; }
 
                 else if (message.RequestType == "accept_connect") { MyText = ""; }
+
+                else if(message.RequestType == "disconnected") { MyText = "Other user have disconnected."; }
 
                 else if (message.RequestType == "no_host") { MyText = "No host waiting on the IP or port you tried. Try again."; }
                 else
@@ -181,6 +210,10 @@ namespace Demo.ViewModel
                 startGame = value;
             }
         }
+
+
+
+
 
         public ICommand RequestAccept
         {
