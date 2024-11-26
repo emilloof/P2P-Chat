@@ -15,6 +15,7 @@ using System.Windows.Markup;
 using System.Net.Http;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 
 namespace Demo.Model
@@ -48,6 +49,7 @@ namespace Demo.Model
         }
     internal class NetworkManager : INotifyPropertyChanged
     {
+        List<Chat> list = new List<Chat>();
 
         private NetworkStream stream;
 
@@ -90,6 +92,21 @@ namespace Demo.Model
             }
         }
 
+        private List<Chat> _ChatHistory = new List<Chat>();
+
+        public List<Chat> Chathistory
+        {
+            get { return _ChatHistory; }
+            set
+            {
+                foreach(Chat chat in value)
+                {
+                    _ChatHistory.Add(chat);
+                }
+               // _ChatHistory = value;
+                OnPropertyChanged("ChatHistory");
+            }
+        }
 
         
         public string IpAddress { get; set; }
@@ -178,6 +195,8 @@ namespace Demo.Model
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
 
+                
+
 
                 endPoint.GetStream().Write(message, 0, message.Length);
                 stream = endPoint.GetStream();
@@ -208,8 +227,10 @@ namespace Demo.Model
                                     Messages accept = new Messages { RequestType = "accept_connect" };
                                     this.Message = accept;
 
-                                    chat = new Chat(); 
-                                    
+                                    chat = new Chat();
+
+                                    chat.Name = proto.Name;       /// funkar ej 
+                                    Debug.WriteLine(chat.Name);
 
                                     break;  
                                 }
@@ -247,6 +268,7 @@ namespace Demo.Model
 
         public void HandleDisconnection(string reason)
         {
+            cancelChatt();
             try
             {
                 Debug.WriteLine($"Disconnection triggered: {reason}");
@@ -261,6 +283,32 @@ namespace Demo.Model
         }
 
 
+        private void cancelChatt()
+        {
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
+            string relativePath = "Data\\Data.json";
+            string fullPath = Path.Combine(basePath, relativePath);
+            string ourfile = File.ReadAllText(fullPath);
+            var list = JsonConvert.DeserializeObject<List<Chat>>(ourfile);
+            if (list == null)
+            {
+                list = new List<Chat>();
+            }
+
+            foreach (var jsonChat in list)
+            {
+                if (jsonChat.ChatID == chat.ChatID)
+                {
+                    return;
+                }
+            }
+
+            list.Add(chat);
+            string jsonString = JsonConvert.SerializeObject(list, Formatting.Indented);
+            File.WriteAllText(fullPath, jsonString);
+
+            Chathistory = list;
+        }
 
 
         private void handleConnection(TcpClient endPoint)
@@ -281,8 +329,8 @@ namespace Demo.Model
                         this.ConnectionGrid = "False";
 
                         Debug.WriteLine("Connection closed by peer.");
-                        
-                     
+
+                        cancelChatt();
                         break; // Exit loop when the connection is closed
                     }
 
@@ -304,6 +352,7 @@ namespace Demo.Model
                                 Debug.WriteLine("SHOW GRID");
                                 this.Request_message = "Chat request sent by: " + p.Name;
                                 this.IsGridVisible = true; // This will update the UI
+                                chat.Name = p.Name;
                             });
 
                         }
@@ -315,34 +364,26 @@ namespace Demo.Model
                             {
                                
                                 chat.Messages.Add(p);
-                                /*
-                                string jsonString = JsonConvert.SerializeObject(chat, Formatting.Indented);
-
-                                string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
-                                string relativePath = "Data\\Data.json";
-
-                                Debug.WriteLine(basePath + relativePath);
-                                string fullPath = Path.Combine(basePath, relativePath);
-                                File.WriteAllText(fullPath, jsonString);
-                                */
-
                                 this.Message = p;
                             });
                         }
                     }
                     catch (JsonReaderException)
                     {
-
+                        cancelChatt();
+                        break;
                     }
                 }
                 catch (IOException ex)
                 {
                     Debug.WriteLine($"IOException (likely disconnected): {ex.Message}");
+                    cancelChatt();
                     break; // Exit loop on disconnection or error
                 }
                 catch (SocketException ex)
                 {
                     Debug.WriteLine($"SocketException (likely disconnected): {ex.Message}");
+                    cancelChatt();
                     break; // Exit loop on socket error
                 }
 
@@ -355,6 +396,7 @@ namespace Demo.Model
             {
                 Messages p = new Messages { Name = Nickname, RequestType = "message", Message = str };
                 p.DateTime = DateTime.Now;
+                chat.Messages.Add(p);
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
                 var buffer = Encoding.UTF8.GetBytes(str);

@@ -1,13 +1,254 @@
-{
-  "ChatID": "f5c3768f-d188-4720-a50d-d1c018f2af0b",
-  "Name": null,
-  "Messages": [
-    {
-      "Name": null,
-      "RequestType": "message",
-      "Message": "hejhej44",
-      "Answer": null,
-      "DateTime": "2024-11-25T10:37:44.6514564+01:00"
-    }
-  ]
-}
+[
+  {
+    "ChatID": "71f8b6ee-e401-487c-bcda-d35526c70e2d",
+    "Name": null,
+    "Messages": [
+      {
+        "Name": null,
+        "RequestType": "message",
+        "Message": "sdf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:12:15.6288485+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "25edb1c2-8b8c-410e-8731-a615658e9501",
+    "Name": null,
+    "Messages": [
+      {
+        "Name": null,
+        "RequestType": "message",
+        "Message": "sdf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:12:15.6288485+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "18583e4a-83de-48e0-b1b0-bb9125d53726",
+    "Name": "fff",
+    "Messages": [
+      {
+        "Name": "dsad",
+        "RequestType": "message",
+        "Message": "sfaf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:02.8524403+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "e12a8709-9af1-44d3-848f-ffe84c027249",
+    "Name": "dsad",
+    "Messages": [
+      {
+        "Name": "dsad",
+        "RequestType": "message",
+        "Message": "sfaf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:02.8524403+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "624ce036-a6a3-499e-95c1-a289661d0a51",
+    "Name": "ddddd",
+    "Messages": [
+      {
+        "Name": "ffff",
+        "RequestType": "message",
+        "Message": "sgs",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:53.8050071+01:00"
+      },
+      {
+        "Name": "ddddd",
+        "RequestType": "message",
+        "Message": "lö'",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:55.4833971+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "9b5b6985-df81-4465-bc56-e8018783ff18",
+    "Name": "ffff",
+    "Messages": [
+      {
+        "Name": "ffff",
+        "RequestType": "message",
+        "Message": "sgs",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:53.8050071+01:00"
+      },
+      {
+        "Name": "ddddd",
+        "RequestType": "message",
+        "Message": "lö'",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:13:55.4833971+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "be06bf43-6283-4fa8-804a-d486735e48d3",
+    "Name": "jj",
+    "Messages": [
+      {
+        "Name": "jj",
+        "RequestType": "message",
+        "Message": "gf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:14:44.7234583+01:00"
+      },
+      {
+        "Name": "ttt",
+        "RequestType": "message",
+        "Message": "ää",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:14:46.3315963+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "c093e682-3d40-4ead-9ecd-a0106042d213",
+    "Name": "ttt",
+    "Messages": [
+      {
+        "Name": "jj",
+        "RequestType": "message",
+        "Message": "gf",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:14:44.7234583+01:00"
+      },
+      {
+        "Name": "ttt",
+        "RequestType": "message",
+        "Message": "ää",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:14:46.3315963+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "99239dae-74bc-4d70-a95c-a4e8a26b714c",
+    "Name": "s",
+    "Messages": [
+      {
+        "Name": "s",
+        "RequestType": "message",
+        "Message": "d",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:19:17.386878+01:00"
+      },
+      {
+        "Name": "aa",
+        "RequestType": "message",
+        "Message": "o",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:19:18.5161038+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "ebdefbde-86d3-4b15-9763-d1d6ef3e1256",
+    "Name": "aa",
+    "Messages": [
+      {
+        "Name": "s",
+        "RequestType": "message",
+        "Message": "d",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:19:17.386878+01:00"
+      },
+      {
+        "Name": "aa",
+        "RequestType": "message",
+        "Message": "o",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:19:18.5161038+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "79439078-8224-462e-873f-d61fc11427c6",
+    "Name": "k",
+    "Messages": [
+      {
+        "Name": "k",
+        "RequestType": "message",
+        "Message": "åå",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:20:23.220589+01:00"
+      },
+      {
+        "Name": "uu",
+        "RequestType": "message",
+        "Message": "oo",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:20:24.7235647+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "7f630054-f33a-43dc-b74f-a2b83fc59069",
+    "Name": "uu",
+    "Messages": [
+      {
+        "Name": "k",
+        "RequestType": "message",
+        "Message": "åå",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:20:23.220589+01:00"
+      },
+      {
+        "Name": "uu",
+        "RequestType": "message",
+        "Message": "oo",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:20:24.7235647+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "0515812e-7122-4698-8397-70584698f653",
+    "Name": "ff",
+    "Messages": [
+      {
+        "Name": "ff",
+        "RequestType": "message",
+        "Message": "f",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:21:52.0741331+01:00"
+      },
+      {
+        "Name": "sss",
+        "RequestType": "message",
+        "Message": "p",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:21:53.0598383+01:00"
+      }
+    ]
+  },
+  {
+    "ChatID": "ba9a2a10-2d22-4b18-900b-4783f6998e2a",
+    "Name": "sss",
+    "Messages": [
+      {
+        "Name": "ff",
+        "RequestType": "message",
+        "Message": "f",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:21:52.0741331+01:00"
+      },
+      {
+        "Name": "sss",
+        "RequestType": "message",
+        "Message": "p",
+        "Answer": null,
+        "DateTime": "2024-11-26T15:21:53.0598383+01:00"
+      }
+    ]
+  }
+]

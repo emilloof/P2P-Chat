@@ -65,7 +65,7 @@
         <Grid HorizontalAlignment="Left" Height="304" Margin="397,157,0,0" VerticalAlignment="Top" Width="143">
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
                 <StackPanel x:Name="MessagesPane" Orientation="Vertical">
-                    <ItemsControl ItemsSource="{Binding ChatMessages}">
+                    <ItemsControl ItemsSource="{Binding ChatHistoryCollection}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />

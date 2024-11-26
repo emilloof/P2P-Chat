@@ -29,17 +29,19 @@ namespace Demo.ViewModel
         private ICommand disconnect;
 
         public ObservableCollection<string> ChatMessages { get; set; }
+        public ObservableCollection<string> ChatHistoryCollection { get; set; }
 
-        public string MyText { 
+
+        public string MyText {
             get {
 
-                return text; } 
-            set 
-            { 
+                return text; }
+            set
+            {
                 text = value;
                 OnPropertyChanged("MyText");
-            
-            } 
+
+            }
         }
 
         private string ipAddress;
@@ -87,7 +89,7 @@ namespace Demo.ViewModel
         }
 
 
-        
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -98,7 +100,7 @@ namespace Demo.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-          
+
         }
         public bool IsGridVisible
         {
@@ -115,13 +117,24 @@ namespace Demo.ViewModel
 
         private string _ConnectionGrid;
         public string ConnectionGrid
-   
+
         {
             get { return _ConnectionGrid; }
             set
             {
                 _ConnectionGrid = value;
                 OnPropertyChanged(nameof(ConnectionGrid));
+            }
+        }
+
+        private List<Chat> _ChatHistory;
+        public List<Chat> ChatHistory
+        {
+            get { return _ChatHistory; }
+            set
+            {
+                _ChatHistory = value;
+                OnPropertyChanged("ChatHistory");
             }
         }
 
@@ -147,6 +160,8 @@ namespace Demo.ViewModel
             IpAddress = "127.0.0.1";
             Port = "8080"; //autofill ip and port for easier testing
             ChatMessages = new ObservableCollection<string>();
+            ChatHistoryCollection = new ObservableCollection<string>();
+
             NetworkManager = networkManager;
             networkManager.PropertyChanged += myModel_PropertyChanged;
             //DisconnectCommand = new DisconnectCommand(this);
@@ -165,27 +180,27 @@ namespace Demo.ViewModel
             if (e.PropertyName == "Message")
             {
 
-                var message = NetworkManager.Message; 
+                var message = NetworkManager.Message;
 
                 if (message.RequestType == "denied_connect") { MyText = "Host denied your request. Please close window."; }
 
                 else if (message.RequestType == "accept_connect") { MyText = ""; }
 
-                else if(message.RequestType == "disconnected") { MyText = "Other user have disconnected."; }
+                else if (message.RequestType == "disconnected") { MyText = "Other user have disconnected."; }
 
                 else if (message.RequestType == "no_host") { MyText = "No host waiting on the IP or port you tried. Try again."; }
                 else
                 {
-                    string mes = message.Name + message.DateTime.ToString() + "\n" + message.Message;
+                    string mes = message.Name + " " + message.DateTime.ToString() + "\n" + message.Message;
                     addMessageToChat(mes);
                 }
-               
+
             }
             else if (e.PropertyName == nameof(NetworkManager.IsGridVisible))
             {
                 OnPropertyChanged(nameof(IsGridVisible));
             }
-            if (e.PropertyName == "Request_message")
+            else if (e.PropertyName == "Request_message")
             {
                 this.Request_message = NetworkManager.Request_message;
             }
@@ -193,6 +208,12 @@ namespace Demo.ViewModel
             {
                 OnPropertyChanged(nameof(ConnectionGrid));
                 this.ConnectionGrid = NetworkManager.ConnectionGrid;
+            }
+            else if (e.PropertyName == "ChatHistory")
+            {
+                OnPropertyChanged("ChatHistory");
+                this.ChatHistory = NetworkManager.Chathistory;
+                updateHistory();
             }
 
         }
@@ -221,13 +242,13 @@ namespace Demo.ViewModel
             {
                 if (requestAccept == null)
                 {
-                    requestAccept = new RequestAccept(this); 
+                    requestAccept = new RequestAccept(this);
                 }
                 return requestAccept;
             }
             set
             {
-                
+
                 requestAccept = value;
             }
         }
@@ -245,7 +266,7 @@ namespace Demo.ViewModel
             NetworkManager.IpAddress = IpAddress;
             NetworkManager.Port = port;
             NetworkManager.Nickname = Nickname;
-    
+
 
             return NetworkManager.startConnection(action);
         }
@@ -258,11 +279,11 @@ namespace Demo.ViewModel
                 if (startConnection(action))
                 {
                     open();
-                    
+
                 }
             }
 
-            else if( action == "Connect")
+            else if (action == "Connect")
             {
                 // if accepted, start the conenction 
                 //Use enable in xaml to just hde the window before accept
@@ -271,12 +292,12 @@ namespace Demo.ViewModel
                 startConnection(action);
                 open();
             }
-           
+
             else
             {
                 MessageBox.Show("Cannot start connection!");
             }
-  
+
         }
         public void open()
         {
@@ -304,10 +325,23 @@ namespace Demo.ViewModel
         public void sendMessage()
         {
             DateTime date = DateTime.Now;
-            string mes = Nickname + date.ToString() + "\n" + MyText;
+            string mes = Nickname + " " + date.ToString() + "\n" + MyText;
             ChatMessages.Add(mes);
+
             NetworkManager.sendChar(MyText);
             MyText = "";
+        }
+
+        public void updateHistory () 
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Debug.WriteLine(ChatHistory);
+                foreach (Chat chat in ChatHistory)
+                {
+                    ChatHistoryCollection.Add(chat.Name);
+                }
+            });
         }
 
         public void answerRequest(bool answer)
