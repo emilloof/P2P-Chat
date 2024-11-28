@@ -3,28 +3,44 @@
   "WorkspaceRootPath": "X:\\tddd49\\Demo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\model\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\model\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\Demo\\Model\\NetworkManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:Demo\\Model\\NetworkManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\view\\gameboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\view\\gameboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\view\\gameboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\view\\gameboard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\command\\viewhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\viewhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\command\\startgamecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\startgamecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\command\\disconnectcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\disconnectcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\command\\keyentercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\keyentercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|x:\\tddd49\\demo\\demo\\viewmodel\\command\\requestaccept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:demo\\viewmodel\\command\\requestaccept.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|X:\\tddd49\\Demo\\Demo\\Data\\Data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Demo\\Data\\Data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50ED582F-92BB-4D3C-BB05-1DF9DF4AA67F}|Demo\\Demo.csproj|solutionrelative:Demo\\ViewModel\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,6 +58,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RequestAccept.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\RequestAccept.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\RequestAccept.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\RequestAccept.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\Command\\RequestAccept.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:21:25.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "viewHistory.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\viewHistory.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\viewHistory.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\viewHistory.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\Command\\viewHistory.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvxwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:18:06.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "GameBoard.xaml",
               "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml",
@@ -49,44 +91,20 @@
               "ToolTip": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml",
               "RelativeToolTip": "Demo\\View\\GameBoard.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-21T15:27:50.08Z",
+              "WhenOpened": "2024-11-28T08:10:58.941Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Demo\\MainWindow.xaml",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\MainWindow.xaml",
-              "RelativeToolTip": "Demo\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-21T15:13:26.793Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\App.xaml",
-              "RelativeDocumentMoniker": "Demo\\App.xaml",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\App.xaml",
-              "RelativeToolTip": "Demo\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-21T15:13:17.698Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Data.json",
-              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
-              "RelativeDocumentMoniker": "Demo\\Data\\Data.json",
-              "ToolTip": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
-              "RelativeToolTip": "Demo\\Data\\Data.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-21T13:34:17.176Z",
+              "DocumentIndex": 5,
+              "Title": "StartGameCommand.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\StartGameCommand.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\StartGameCommand.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\StartGameCommand.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\Command\\StartGameCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T07:25:20.328Z",
               "EditorCaption": ""
             },
             {
@@ -97,22 +115,74 @@
               "RelativeDocumentMoniker": "Demo\\Model\\NetworkManager.cs",
               "ToolTip": "X:\\tddd49\\Demo\\Demo\\Model\\NetworkManager.cs",
               "RelativeToolTip": "Demo\\Model\\NetworkManager.cs",
-              "ViewState": "AgIAADMBAAAAAAAAAAAiwEsBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAmwLUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T13:14:20.012Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "Demo\\ViewModel\\MainWindowViewModel.cs",
               "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\MainWindowViewModel.cs",
               "RelativeToolTip": "Demo\\ViewModel\\MainWindowViewModel.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKoAAAAAAAAAAADwvxMBAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T13:17:37.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameBoard.xaml.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml.cs",
+              "RelativeDocumentMoniker": "Demo\\View\\GameBoard.xaml.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\View\\GameBoard.xaml.cs",
+              "RelativeToolTip": "Demo\\View\\GameBoard.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:49:55.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "KeyEnterCommand.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\Command\\KeyEnterCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:21:37.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DisconnectCommand.cs",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\DisconnectCommand.cs",
+              "RelativeDocumentMoniker": "Demo\\ViewModel\\Command\\DisconnectCommand.cs",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\ViewModel\\Command\\DisconnectCommand.cs",
+              "RelativeToolTip": "Demo\\ViewModel\\Command\\DisconnectCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T08:21:43.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Data.json",
+              "DocumentMoniker": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
+              "RelativeDocumentMoniker": "Demo\\Data\\Data.json",
+              "ToolTip": "X:\\tddd49\\Demo\\Demo\\Data\\Data.json",
+              "RelativeToolTip": "Demo\\Data\\Data.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-21T15:07:07.49Z",
               "EditorCaption": ""
             }
           ]

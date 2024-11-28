@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,7 +31,7 @@ namespace Demo.ViewModel
         private ICommand disconnect;
 
         public ObservableCollection<string> ChatMessages { get; set; }
-        public ObservableCollection<string> ChatHistoryCollection { get; set; }
+        public ObservableCollection<Chat> ChatHistoryCollection { get; set; }
 
 
         public string MyText {
@@ -160,7 +162,7 @@ namespace Demo.ViewModel
             IpAddress = "127.0.0.1";
             Port = "8080"; //autofill ip and port for easier testing
             ChatMessages = new ObservableCollection<string>();
-            ChatHistoryCollection = new ObservableCollection<string>();
+            ChatHistoryCollection = new ObservableCollection<Chat>();
 
             NetworkManager = networkManager;
             networkManager.PropertyChanged += myModel_PropertyChanged;
@@ -185,6 +187,13 @@ namespace Demo.ViewModel
                 if (message.RequestType == "denied_connect") { MyText = "Host denied your request. Please close window."; }
 
                 else if (message.RequestType == "accept_connect") { MyText = ""; }
+
+                else if (message.RequestType == "clear_chat")
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    { ChatMessages.Clear(); }
+                    );
+                }
 
                 else if (message.RequestType == "disconnected") { MyText = "Other user have disconnected."; }
 
@@ -232,8 +241,23 @@ namespace Demo.ViewModel
             }
         }
 
+        private ICommand viewhistory;
+        public ICommand ViewHistory
+        {
+            get 
+            { 
+                if (viewhistory == null)
+                {
+                    viewhistory = new viewHistory(this);
+                }
+                return viewhistory   ; }
+            set
+            {
+                viewhistory = value;
+            }
 
 
+        }
 
 
         public ICommand RequestAccept
@@ -304,6 +328,7 @@ namespace Demo.ViewModel
             GameBoard board = new GameBoard();
             board.DataContext = this;
             board.Show();
+           
         }
 
         private ICommand enterCommand;
@@ -334,12 +359,17 @@ namespace Demo.ViewModel
 
         public void updateHistory () 
         {
+
+            if(ChatHistory == null)
+             {
+                return;
+             }
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Debug.WriteLine(ChatHistory);
+                Debug.WriteLine("ChatHistory: " + ChatHistory);
                 foreach (Chat chat in ChatHistory)
                 {
-                    ChatHistoryCollection.Add(chat.Name);
+                    ChatHistoryCollection.Add(chat);
                 }
             });
         }
@@ -355,6 +385,24 @@ namespace Demo.ViewModel
             {
                 ChatMessages.Add(message);
             });
+        }
+
+
+        public void viewHistory(string chatId)
+        {
+     
+
+            Guid chatID = Guid.Parse(chatId);
+            ChatMessages.Clear();
+            Chat chat = NetworkManager.viewHistory(chatID);
+
+            foreach(Messages message in chat.Messages)
+            {
+                DateTime date = message.DateTime;
+                string mes = message.Name + " " + date.ToString() + "\n" + message.Message;
+                ChatMessages.Add(mes); 
+            }
+
         }
 
     }

@@ -105,6 +105,7 @@
     <Compile Include="ViewModel\Command\DisconnectCommand.cs" />
     <Compile Include="ViewModel\Command\KeyEnterCommand.cs" />
     <Compile Include="ViewModel\Command\RequestAccept.cs" />
+    <Compile Include="ViewModel\Command\viewHistory.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Command\StartGameCommand.cs" />
     <Compile Include="View\GameBoard.xaml.cs">

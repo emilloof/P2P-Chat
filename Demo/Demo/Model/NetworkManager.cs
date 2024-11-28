@@ -96,9 +96,21 @@ namespace Demo.Model
 
         public List<Chat> Chathistory
         {
-            get { return _ChatHistory; }
+            get {
+                Debug.WriteLine("Network chathistory get property");
+                if (_ChatHistory == null)
+                {
+                    _ChatHistory = new List<Chat>();
+                }
+                return _ChatHistory;
+            }
             set
             {
+                
+                if (value == null)
+                {
+                    return;
+                }
                 foreach(Chat chat in value)
                 {
                     _ChatHistory.Add(chat);
@@ -135,8 +147,13 @@ namespace Demo.Model
 
         public bool startConnection(string action)
         {
+
+            updateHistory();
             Task.Factory.StartNew(() =>
             {
+              
+               
+
                 if (action == "Host")
                 {
                     startHost(); 
@@ -152,6 +169,7 @@ namespace Demo.Model
 
         private void startHost()
         {
+            ConnectionGrid = "False";
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(IpAddress), int.Parse(Port));
             TcpListener server = new TcpListener(ipEndPoint);
             TcpClient endPoint = null;
@@ -161,6 +179,7 @@ namespace Demo.Model
             endPoint = server.AcceptTcpClient();
             Debug.WriteLine("Connection accepted!");
             chat = new Chat();
+            
             handleConnection(endPoint);
 
 
@@ -274,6 +293,7 @@ namespace Demo.Model
                 Debug.WriteLine($"Disconnection triggered: {reason}");
 
                 // Perform cleanup
+
                 stream?.Close(); // Close the stream
             }
             catch (Exception ex)
@@ -282,6 +302,17 @@ namespace Demo.Model
             }
         }
 
+
+        private void updateHistory()
+        {
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
+            string relativePath = "Data\\Data.json";
+            string fullPath = Path.Combine(basePath, relativePath);
+            string ourfile = File.ReadAllText(fullPath);
+            var list = JsonConvert.DeserializeObject<List<Chat>>(ourfile);
+            Chathistory = list;
+
+        }
 
         private void cancelChatt()
         {
@@ -390,6 +421,32 @@ namespace Demo.Model
             }
 
         }
+
+        public Chat viewHistory(Guid ChatID)
+        {
+            if (stream != null)
+            {
+                HandleDisconnection("Open history");
+
+            }
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
+            string relativePath = "Data\\Data.json";
+            string fullPath = Path.Combine(basePath, relativePath);
+            string ourfile = File.ReadAllText(fullPath);
+            var list = JsonConvert.DeserializeObject<List<Chat>>(ourfile);
+
+            foreach (Chat chat in list)
+            {
+
+                if (chat.ChatID == ChatID)
+                {
+                    ConnectionGrid = "False";
+                    return chat; 
+                }
+            } return null;
+            
+
+        }
         public void sendChar(string str)
         {
             Task.Factory.StartNew(() =>
@@ -408,8 +465,16 @@ namespace Demo.Model
         public void sendAnswer(bool answer)
         {
             this.IsGridVisible = false;
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                if (answer)
+                {
+                    this.Message = new Messages { RequestType = "clear_chat" };
+                    this.ConnectionGrid = "True";
+                }
+            });
 
-            string str = answer.ToString();
+                string str = answer.ToString();
             Task.Factory.StartNew(() =>
             {
                 Messages p = new Messages { Name = Nickname, RequestType = "requestAnswer", Answer = str };

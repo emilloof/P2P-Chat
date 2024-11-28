@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Data",
     "\\View",
     "\\ViewModel"
   ],
-  "SelectedNode": "\\View\\GameBoard.xaml",
+  "SelectedNode": "\\Data\\Data.json",
   "PreviewInSolutionExplorer": false
 }

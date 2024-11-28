@@ -80,6 +80,6 @@ C:\Users\emill\tddd49\Demo\Demo\obj\Debug\Demo.pdb
 X:\tddd49\Demo\Demo\bin\Debug\Microsoft.Xaml.Behaviors.dll
 X:\tddd49\Demo\Demo\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 X:\tddd49\Demo\Demo\bin\Debug\Microsoft.Xaml.Behaviors.xml
-X:\tddd49\Demo\Demo\obj\Debug\Demo.csproj.CopyComplete
 X:\tddd49\Demo\Demo\bin\Debug\Microsoft.Expression.Interactions.dll
 X:\tddd49\Demo\Demo\bin\Debug\System.Windows.Interactivity.dll
+X:\tddd49\Demo\Demo\obj\Debug\Demo.csproj.Up2Date

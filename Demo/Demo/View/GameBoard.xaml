@@ -53,22 +53,29 @@
                 </TextBox.InputBindings>
 
             </TextBox>
-            <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
-                <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top"/>
-                <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
-            </Grid>
+            
 
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
-
+        <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="331*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Accept" Command="{Binding Path=RequestAccept}" CommandParameter="Accept" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top"/>
+            <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
+        </Grid>
         <Grid HorizontalAlignment="Left" Height="304" Margin="397,157,0,0" VerticalAlignment="Top" Width="143">
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
                 <StackPanel x:Name="MessagesPane" Orientation="Vertical">
                     <ItemsControl ItemsSource="{Binding ChatHistoryCollection}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" Margin="5" Background="#FFF0F0F0" Padding="5" />
+                                <Button Command="{Binding DataContext.ViewHistory, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                        Padding="5" Background="#FFF0F0F0" BorderBrush="Transparent" CommandParameter="{Binding ChatID}">
+                                    <TextBlock Text="{Binding Name}" Margin="5" />
+                                </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
