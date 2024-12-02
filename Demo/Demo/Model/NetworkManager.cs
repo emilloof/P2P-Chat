@@ -333,7 +333,10 @@ namespace Demo.Model
                     return;
                 }
             }
-
+            if (!chat.Messages.Any())
+            {
+                return;
+            }
             list.Add(chat);
             string jsonString = JsonConvert.SerializeObject(list, Formatting.Indented);
             File.WriteAllText(fullPath, jsonString);

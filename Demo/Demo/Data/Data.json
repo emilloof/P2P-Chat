@@ -1,330 +1,41 @@
 [
   {
-    "ChatID": "ecfc77b3-7833-464d-9dad-862774792170",
-    "Name": null,
+    "ChatID": "56734f64-de65-404f-a49a-170d93d71154",
+    "Name": "karl",
     "Messages": [
       {
-        "Name": null,
+        "Name": "viktor",
         "RequestType": "message",
-        "Message": "fsda",
+        "Message": "hejan jag pluggar nu",
         "Answer": null,
-        "DateTime": "2024-11-28T11:00:35.109268+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "8d5b460b-afa7-4195-99cf-ffae9c2531d7",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "fsda",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:00:35.109268+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "9e61c7a1-b680-4bd5-b5c1-b7120a883658",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "dsda",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:00:51.3255109+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "d0e327b6-dba7-4075-aa33-cd13af0ea208",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "dsda",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:00:51.3255109+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "fe9b41d1-31cb-4813-854f-7021816ce504",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "hpoj",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:02:25.7752422+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "d8519cf6-88cc-454f-8e2f-ce55d5f39cf4",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "hpoj",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:02:25.7752422+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "27eba7fe-be36-48b9-bb7e-7645c0042654",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "b5e194a6-ac6b-40e5-bc19-c351c3388cb3",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "6f86c3c8-ef60-4d23-8f52-142cf5dbc71c",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "e76a1cb3-ab93-434d-86f7-f2b77d9cd4a1",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "63cea92e-2a53-439c-b204-4daa37d05b6a",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "daf",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:13:48.3608744+01:00"
+        "DateTime": "2024-12-02T12:19:26.0718783+01:00"
       },
       {
-        "Name": null,
+        "Name": "karl",
         "RequestType": "message",
-        "Message": "adf",
+        "Message": "ok då vet jag",
         "Answer": null,
-        "DateTime": "2024-11-28T11:13:49.1726187+01:00"
+        "DateTime": "2024-12-02T12:19:31.0629527+01:00"
       }
     ]
   },
   {
-    "ChatID": "d33b4065-a347-485c-87f2-63a93af6f803",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "ef0ca5dc-f307-43e8-af04-53fc824cb6a9",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "3642f769-0ef7-42df-8f0f-06552591d86f",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "19919e2b-b9f3-4784-8613-31dfe9c42250",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "ad027c25-2723-40aa-8057-77d7720de280",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "24a61bf3-4f85-4815-8a40-773174192e48",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "96895ff0-c1d4-4df4-afee-e6be0837eba2",
-    "Name": null,
+    "ChatID": "06207091-f603-47fb-8187-797d8a22b905",
+    "Name": "viktor",
     "Messages": [
       {
-        "Name": null,
+        "Name": "viktor",
         "RequestType": "message",
-        "Message": "gf",
+        "Message": "hejan jag pluggar nu",
         "Answer": null,
-        "DateTime": "2024-11-28T11:23:16.3187634+01:00"
+        "DateTime": "2024-12-02T12:19:26.0718783+01:00"
       },
       {
-        "Name": null,
+        "Name": "karl",
         "RequestType": "message",
-        "Message": "ghjgh",
+        "Message": "ok då vet jag",
         "Answer": null,
-        "DateTime": "2024-11-28T11:23:19.7974764+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "d134e60a-1eda-4998-9bba-87c628215e59",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "gf",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:23:16.3187634+01:00"
-      },
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "ghjgh",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:23:19.7974764+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "439fa149-4353-42a0-a95c-1fc85f24be0a",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "c3854c20-aee0-4e55-b552-fd05dea15e1c",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "b897b60d-f99b-470d-83e5-892cc6217f77",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "41bd05bb-5aad-4028-932c-00b7bd059103",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "a5a863c4-53cd-4b8d-bb87-5c2c4371de51",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "hjkh",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:28:47.2484764+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "7b2da457-5251-4ef9-afc2-630edf2042e3",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "742d5b33-48d6-40f8-b944-32fe38a39429",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "59dc86db-5ce0-4742-b1a7-8e5ba86a034a",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "104db682-ff1a-4520-bd64-d4fa26ff7e47",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "dd5a845e-aff0-4a46-bb6d-0dd2dd55f779",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "v",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:39:35.4696285+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "bdddbc31-8aca-40ba-a482-de388110e790",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "v",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:39:35.4696285+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "3e90dbd7-bfcc-4b67-8fc5-b17b78f353a3",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "c980a43f-cb9f-4e39-ac2c-f32946c310a9",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "mkhg",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:42:47.2327209+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "2564ba51-6710-427b-9fa2-231680ebd75c",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "mkhg",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:42:47.2327209+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "5575a064-d47d-4f60-adb5-b5b027e30319",
-    "Name": null,
-    "Messages": []
-  },
-  {
-    "ChatID": "80d9ce85-b791-4075-972b-637f410da82c",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "trfyrt",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:45:27.1111043+01:00"
-      }
-    ]
-  },
-  {
-    "ChatID": "2edc87e3-5b46-4f6b-9682-e371635bd9d6",
-    "Name": null,
-    "Messages": [
-      {
-        "Name": null,
-        "RequestType": "message",
-        "Message": "trfyrt",
-        "Answer": null,
-        "DateTime": "2024-11-28T11:45:27.1111043+01:00"
+        "DateTime": "2024-12-02T12:19:31.0629527+01:00"
       }
     ]
   }

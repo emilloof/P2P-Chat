@@ -53,7 +53,6 @@
                 </TextBox.InputBindings>
 
             </TextBox>
-            
 
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
@@ -83,5 +82,7 @@
             </ScrollViewer>
 
         </Grid>
+        <TextBox Background="Aqua" HorizontalAlignment="Left" Height="18" Margin="393,112,0,0" TextWrapping="Wrap" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="135"/>
+
     </Grid>
 </Window>

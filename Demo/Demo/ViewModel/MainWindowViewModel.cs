@@ -297,6 +297,11 @@ namespace Demo.ViewModel
 
         public void startGameBoard(string action)
         {
+            if (Nickname == null)
+            {
+                MessageBox.Show("Please enter a nickname");
+                return;
+            }
 
             if (action == "Host")
             {
@@ -366,8 +371,15 @@ namespace Demo.ViewModel
              }
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Debug.WriteLine("ChatHistory: " + ChatHistory);
-                foreach (Chat chat in ChatHistory)
+                Debug.WriteLine("ChatHistoy: " + ChatHistory);
+
+                ChatHistoryCollection.Clear();
+
+                var sortedChatHistory = ChatHistory
+                    .OrderBy(chat => chat.Messages[0].DateTime) // Sorting by the DateTime of the first message
+                    .ToList();
+
+                foreach (Chat chat in sortedChatHistory)
                 {
                     ChatHistoryCollection.Add(chat);
                 }
@@ -404,6 +416,43 @@ namespace Demo.ViewModel
             }
 
         }
+
+        public void SearchChatHistory(string letters)
+        {
+
+            if (string.IsNullOrWhiteSpace(letters))
+            {
+                // If search term is empty, show all chats
+                updateHistory();
+                return;
+            }
+
+            var searchResults = ChatHistory
+                .Where(chat => chat.Name.IndexOf(letters, StringComparison.OrdinalIgnoreCase) >= 0)
+                .OrderBy(chat => chat.Messages[0].DateTime) // Sort results by date
+                .ToList();
+            Debug.WriteLine(searchResults);
+
+
+            ChatHistoryCollection.Clear();
+            foreach (Chat chat in searchResults)
+            {
+                ChatHistoryCollection.Add(chat);
+            }
+        }
+
+        private string _searchTerm;
+        public string SearchTerm
+        {
+            get => _searchTerm;
+            set
+            {
+                _searchTerm = value;
+                OnPropertyChanged();
+                SearchChatHistory(_searchTerm); // Call search on text change
+            }
+        }
+
 
     }
 }
