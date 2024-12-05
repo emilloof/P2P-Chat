@@ -171,6 +171,10 @@ namespace Demo.ViewModel
 
         public void Disconnect()
         {
+            IsGridVisible = false;
+            MyText = "";
+            SearchTerm = "";
+            ChatMessages.Clear();
             NetworkManager.HandleDisconnection("GameBoard closed via MVVM pattern");
         }
 
@@ -185,6 +189,13 @@ namespace Demo.ViewModel
                 var message = NetworkManager.Message;
 
                 if (message.RequestType == "denied_connect") { MyText = "Host denied your request. Please close window."; }
+
+                else if (message.RequestType == "BUZZ")
+                {
+               
+                    Shaking = true;
+                    Shaking = false;
+                }
 
                 else if (message.RequestType == "accept_connect") { MyText = ""; }
 
@@ -451,6 +462,42 @@ namespace Demo.ViewModel
                 OnPropertyChanged();
                 SearchChatHistory(_searchTerm); // Call search on text change
             }
+        }
+
+
+
+        private ICommand buzz;
+        private bool shaking;
+        public bool Shaking
+        {
+            get { return shaking; }
+            set { shaking = value; OnPropertyChanged(nameof(Shaking)); }
+        }
+        
+        public ICommand BUZZ
+        {
+            get
+            {
+                if (buzz == null)
+                {
+                    buzz = new BuzzCommand(this);
+                }
+                return buzz;
+            }
+
+
+            set
+            {
+
+                buzz = value;
+            }
+        }
+
+        public void sendBuzz()
+        {
+            NetworkManager.sendBuzz();
+
+
         }
 
 

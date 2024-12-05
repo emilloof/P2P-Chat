@@ -303,6 +303,24 @@ namespace Demo.Model
         }
 
 
+        public void sendBuzz()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                Messages p = new Messages { Name = Nickname, RequestType = "BUZZ" };
+                string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
+                var message = Encoding.UTF8.GetBytes(jsonString);
+
+                stream.Write(message, 0, message.Length);
+            });
+
+
+
+        }
+
+
+
+
         private void updateHistory()
         {
             string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
@@ -316,6 +334,7 @@ namespace Demo.Model
 
         private void cancelChatt()
         {
+            this.IsGridVisible = false;
             string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
             string relativePath = "Data\\Data.json";
             string fullPath = Path.Combine(basePath, relativePath);
@@ -324,6 +343,10 @@ namespace Demo.Model
             if (list == null)
             {
                 list = new List<Chat>();
+            }
+            if (chat == null)
+            {
+                return;
             }
 
             foreach (var jsonChat in list)
@@ -390,6 +413,8 @@ namespace Demo.Model
                             });
 
                         }
+
+                        
                         else
                         {
                             

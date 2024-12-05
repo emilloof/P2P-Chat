@@ -102,6 +102,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\NetworkManager.cs" />
+    <Compile Include="ViewModel\Command\BuzzCommand.cs" />
     <Compile Include="ViewModel\Command\DisconnectCommand.cs" />
     <Compile Include="ViewModel\Command\KeyEnterCommand.cs" />
     <Compile Include="ViewModel\Command\RequestAccept.cs" />

@@ -8,11 +8,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo.View" xmlns:model="clr-namespace:Demo.Model" d:DataContext="{d:DesignInstance Type=model:NetworkManager}"
         mc:Ignorable="d"
-        Title="GameBoard" Height="600" Width="600">
+        Title="GameBoard" Height="500" Width="725">
 
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Storyboard x:Key="Buzz" TargetProperty="Left">
+            <DoubleAnimation 
+                By="15"
+                
+               Duration="0:0:0.05"
+                 AutoReverse="True" RepeatBehavior="5x"
+                 FillBehavior="Stop"/>
+        </Storyboard>
     </Window.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -20,10 +28,25 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <Window.Style>
+        <Style TargetType="Window">
+            <Style.Triggers>
+                <!-- DataTrigger that listens for the IsShaking property change -->
+                <DataTrigger Binding="{Binding Shaking}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource Buzz}" />
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
     <Grid>
         <Grid Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" IsEnabled="{Binding ConnectionGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
+
             <Grid.RenderTransform>
+
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
@@ -32,9 +55,11 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="243*"/>
-                <ColumnDefinition Width="157*"/>
+                <ColumnDefinition Width="221*"/>
+                <ColumnDefinition Width="129*"/>
             </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding Path=BUZZ}" Content="BUZZ" HorizontalAlignment="Left" Height="41" Margin="371,328,0,0" VerticalAlignment="Top" Width="53" Click="Button_Click" RenderTransformOrigin="0.333,0.581"/>
 
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,257">
                 <StackPanel x:Name="MessagesPanel" Orientation="Vertical">
@@ -47,6 +72,7 @@
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
+
             <TextBox Text="{Binding Path=MyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="354" Margin="10,329,0,0" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"  >
                 <TextBox.InputBindings>
                     <KeyBinding Command="{Binding Path=EnterCommand}" Key="Enter" />
@@ -54,8 +80,9 @@
 
             </TextBox>
 
+
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="428,68,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chattlog"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="521,54,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="0.213,0.489"><Run Language="sv-se" FontWeight="Bold" Text="Chatlog"/></TextBlock>
         <Grid Visibility="{Binding IsGridVisible, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Margin="10,389,72,-40">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="331*"/>
@@ -65,24 +92,47 @@
             <Button Content="Decline" Command="{Binding Path=RequestAccept}" CommandParameter="Decline" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="179,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="{Binding Request_message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="304" Margin="397,157,0,0" VerticalAlignment="Top" Width="143">
-            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+        <Grid  HorizontalAlignment="Left" Height="321" Margin="451,93,0,0" VerticalAlignment="Top" Width="214">
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Margin="0,50,0,0">
                 <StackPanel x:Name="MessagesPane" Orientation="Vertical">
                     <ItemsControl ItemsSource="{Binding ChatHistoryCollection}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding DataContext.ViewHistory, RelativeSource={RelativeSource AncestorType=Window}}" 
                                         Padding="5" Background="#FFF0F0F0" BorderBrush="Transparent" CommandParameter="{Binding ChatID}">
-                                    <TextBlock Text="{Binding Name}" Margin="5" />
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <TextBlock Margin="5"> 
+                                        <Run Text="{Binding Name}" />
+                                        <LineBreak/>
+                                        <Run Text="{Binding Messages[0].DateTime}"/>
+
+
+                                    </TextBlock>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
+            <Ellipse HorizontalAlignment="Left" Height="25" Margin="10,5,0,0" Stroke="#FFF0F0F0" VerticalAlignment="Top" Width="25" Fill="#FFF0F0F0"/>
+            <Ellipse HorizontalAlignment="Left" Height="12" Margin="15,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="11" StrokeThickness="1.4"/>
+            <Ellipse HorizontalAlignment="Left" Height="2" Margin="23,21,0,0" Stroke="Black" VerticalAlignment="Top" Width="7" RenderTransformOrigin="0.5,0.5" StrokeThickness="1.6">
+                <Ellipse.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="41.781"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Ellipse.RenderTransform>
+            </Ellipse>
 
         </Grid>
-        <TextBox Background="Aqua" HorizontalAlignment="Left" Height="18" Margin="393,112,0,0" TextWrapping="Wrap" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="135"/>
+        <TextBox Background="White" HorizontalAlignment="Left" Height="26" Margin="496,100,0,0" TextWrapping="Wrap" Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.493,0.766"/>
 
     </Grid>
 </Window>
