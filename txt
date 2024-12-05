@@ -1,0 +1,30 @@
+<Window.Triggers>
+    <EventTrigger RoutedEvent="Window.MouseDown">
+        <EventTrigger.Actions>
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation 
+                        Storyboard.TargetProperty="(Window.Left)"
+                        Duration="0:0:0.05"
+                        AutoReverse="True"
+                        RepeatBehavior="3x"
+                        FillBehavior="Stop">
+                        <!-- Start at the current position of the window -->
+                        <DoubleAnimation.From>
+                            <Binding Path="Left" RelativeSource="{RelativeSource Self}" />
+                        </DoubleAnimation.From>
+                        <!-- Move slightly to the right -->
+                        <DoubleAnimation.To>
+                            <Binding Path="Left" RelativeSource="{RelativeSource Self}">
+                                <Binding.RelativeSource>
+                                    <RelativeSource Mode="Self" />
+                                </Binding.RelativeSource>
+                            </Binding>
+                        </DoubleAnimation.To>
+                        <DoubleAnimation.By>15</DoubleAnimation.By>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger.Actions>
+    </EventTrigger>
+</Window.Triggers>
