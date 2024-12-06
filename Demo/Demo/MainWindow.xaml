@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Demo"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid IsEnabled="{Binding ButtonHistory}">
         <Button Content="Host" HorizontalAlignment="Left" Margin="178,322,0,0" VerticalAlignment="Top" Command="{Binding Path=StartGame}" CommandParameter="Host" Height="52" Width="180"/>
         <Button Content="Connect" HorizontalAlignment="Left" Margin="451,322,0,0" VerticalAlignment="Top" Command="{Binding Path=StartGame}" CommandParameter="Connect" Height="52" Width="180"/>
         <TextBox HorizontalAlignment="Center" Margin="0,286,0,0" TextWrapping="Wrap" Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
@@ -15,6 +15,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="Nickname"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" Margin="0,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="Port"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" Margin="0,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="sv-se" Text="IP address"/></TextBlock>
+        <Button  Content="View History" HorizontalAlignment="Left" Height="26" Margin="678,373,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click" Command="{Binding Path=View_History}" Background="White"/>
     </Grid>
 
 </Window>

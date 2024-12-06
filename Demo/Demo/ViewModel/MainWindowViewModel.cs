@@ -19,6 +19,8 @@ using Demo.ViewModel.Command;
 using Microsoft.Win32;
 
 
+
+
 namespace Demo.ViewModel
 {
     internal class MainWindowViewModel : INotifyPropertyChanged
@@ -129,6 +131,23 @@ namespace Demo.ViewModel
             }
         }
 
+
+
+
+        private string buttonHistory;
+        public string ButtonHistory
+
+        {
+            get { return buttonHistory; }
+            set
+            {
+                buttonHistory = value;
+                OnPropertyChanged(nameof(ButtonHistory));
+            }
+        }
+
+
+
         private List<Chat> _ChatHistory;
         public List<Chat> ChatHistory
         {
@@ -175,7 +194,7 @@ namespace Demo.ViewModel
             MyText = "";
             SearchTerm = "";
             ChatMessages.Clear();
-            NetworkManager.HandleDisconnection("GameBoard closed via MVVM pattern");
+            NetworkManager.HandleDisconnection();
         }
 
 
@@ -192,6 +211,9 @@ namespace Demo.ViewModel
 
                 else if (message.RequestType == "BUZZ")
                 {
+                    message.Message = "* Sent a Buzz *";
+                    string mes = message.Name + " " + message.DateTime.ToString() + "\n" + message.Message;
+                    addMessageToChat(mes);
                
                     Shaking = true;
                     Shaking = false;
@@ -257,9 +279,10 @@ namespace Demo.ViewModel
         {
             get 
             { 
+               
                 if (viewhistory == null)
                 {
-                    viewhistory = new viewHistory(this);
+                    viewhistory = new ViewHistoryCommand(this);
                 }
                 return viewhistory   ; }
             set
@@ -277,7 +300,7 @@ namespace Demo.ViewModel
             {
                 if (requestAccept == null)
                 {
-                    requestAccept = new RequestAccept(this);
+                    requestAccept = new RequestAcceptCommand(this);
                 }
                 return requestAccept;
             }
@@ -341,6 +364,7 @@ namespace Demo.ViewModel
         }
         public void open()
         {
+            ButtonHistory = "False";    
             GameBoard board = new GameBoard();
             board.DataContext = this;
             board.Show();
@@ -413,20 +437,25 @@ namespace Demo.ViewModel
 
         public void viewHistory(string chatId)
         {
-     
-
             Guid chatID = Guid.Parse(chatId);
-            ChatMessages.Clear();
+
             Chat chat = NetworkManager.viewHistory(chatID);
-
-            foreach(Messages message in chat.Messages)
+            if(chat == null)
             {
-                DateTime date = message.DateTime;
-                string mes = message.Name + " " + date.ToString() + "\n" + message.Message;
-                ChatMessages.Add(mes); 
+                return;
             }
+            
+            ChatMessages.Clear();
 
-        }
+
+            foreach (Messages message in chat.Messages)
+                {
+                    DateTime date = message.DateTime;
+                    string mes = message.Name + " " + date.ToString() + "\n" + message.Message;
+                    ChatMessages.Add(mes);
+                }
+
+    }
 
         public void SearchChatHistory(string letters)
         {
@@ -495,8 +524,49 @@ namespace Demo.ViewModel
 
         public void sendBuzz()
         {
+            string str = Nickname + " " + DateTime.Now.ToString() + "\n" + "* Sent a Buzz *";
+            ChatMessages.Add(str);
             NetworkManager.sendBuzz();
 
+
+        }
+
+        private ICommand view_history;
+        public ICommand View_History
+        {
+            get
+            {
+                if (view_history == null)
+                {
+                    view_history = new MainWindowViewHistoryCommand(this);
+                }
+                return view_history;
+                
+            }
+
+
+            set
+            {
+                view_history = value;
+                
+            }
+        }
+
+        public void open_history()
+        {
+            NetworkManager.updateHistory();
+            if (ChatHistory != null )
+            {
+                open();
+                ConnectionGrid = "False";
+                
+                viewHistory(ChatHistory[0].ChatID.ToString());
+            }
+            else
+            {
+                MessageBox.Show("No history available.");
+            }
+            
 
         }
 

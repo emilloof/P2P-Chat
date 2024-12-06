@@ -285,20 +285,21 @@ namespace Demo.Model
         }
 
 
-        public void HandleDisconnection(string reason)
+        public void HandleDisconnection()
         {
             cancelChatt();
             try
             {
-                Debug.WriteLine($"Disconnection triggered: {reason}");
-
+                Debug.WriteLine($"Disconnection triggered");
+                
                 // Perform cleanup
 
                 stream?.Close(); // Close the stream
+                stream = null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error during disconnection: {ex.Message}");
+                Debug.WriteLine($"Error during disconnection");
             }
         }
 
@@ -307,7 +308,9 @@ namespace Demo.Model
         {
             Task.Factory.StartNew(() =>
             {
-                Messages p = new Messages { Name = Nickname, RequestType = "BUZZ" };
+                Messages p = new Messages { Name = Nickname, RequestType = "BUZZ", DateTime = DateTime.Now, Message = "* Sent a Buzzz *"};
+                chat.Messages.Add(p);
+
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
 
@@ -321,7 +324,7 @@ namespace Demo.Model
 
 
 
-        private void updateHistory()
+        public void updateHistory()
         {
             string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
             string relativePath = "Data\\Data.json";
@@ -340,6 +343,8 @@ namespace Demo.Model
             string fullPath = Path.Combine(basePath, relativePath);
             string ourfile = File.ReadAllText(fullPath);
             var list = JsonConvert.DeserializeObject<List<Chat>>(ourfile);
+
+            
             if (list == null)
             {
                 list = new List<Chat>();
@@ -365,6 +370,7 @@ namespace Demo.Model
             File.WriteAllText(fullPath, jsonString);
 
             Chathistory = list;
+            
         }
 
 
@@ -387,7 +393,7 @@ namespace Demo.Model
 
                         Debug.WriteLine("Connection closed by peer.");
 
-                        cancelChatt();
+                        HandleDisconnection();
                         break; // Exit loop when the connection is closed
                     }
 
@@ -421,7 +427,7 @@ namespace Demo.Model
                             // Process other messages 
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                               
+
                                 chat.Messages.Add(p);
                                 this.Message = p;
                             });
@@ -429,20 +435,20 @@ namespace Demo.Model
                     }
                     catch (JsonReaderException)
                     {
-                        cancelChatt();
+                        HandleDisconnection();
                         break;
                     }
                 }
                 catch (IOException ex)
                 {
                     Debug.WriteLine($"IOException (likely disconnected): {ex.Message}");
-                    cancelChatt();
+                    HandleDisconnection();
                     break; // Exit loop on disconnection or error
                 }
                 catch (SocketException ex)
                 {
                     Debug.WriteLine($"SocketException (likely disconnected): {ex.Message}");
-                    cancelChatt();
+                    HandleDisconnection();
                     break; // Exit loop on socket error
                 }
 
@@ -454,8 +460,11 @@ namespace Demo.Model
         {
             if (stream != null)
             {
-                HandleDisconnection("Open history");
-
+                if (MessageBox.Show("Are you sure you want to leave chat? \n You will be disconnected", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    HandleDisconnection();
+                }
+                else { return null; }   
             }
             string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"); // Base directory of the application
             string relativePath = "Data\\Data.json";
@@ -484,7 +493,7 @@ namespace Demo.Model
                 chat.Messages.Add(p);
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);
                 var message = Encoding.UTF8.GetBytes(jsonString);
-                var buffer = Encoding.UTF8.GetBytes(str);
+                //var buffer = Encoding.UTF8.GetBytes(str);
 
                 stream.Write(message, 0, message.Length);
             });
