@@ -308,7 +308,7 @@ namespace Demo.Model
         {
             Task.Factory.StartNew(() =>
             {
-                Messages p = new Messages { Name = Nickname, RequestType = "BUZZ", DateTime = DateTime.Now, Message = "* Sent a Buzzz *"};
+                Messages p = new Messages { Name = Nickname, RequestType = "BUZZ", DateTime = DateTime.Now, Message = "* Sent a Buzz *"};
                 chat.Messages.Add(p);
 
                 string jsonString = JsonConvert.SerializeObject(p, Formatting.Indented);

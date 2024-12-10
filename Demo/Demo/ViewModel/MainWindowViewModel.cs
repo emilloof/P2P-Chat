@@ -194,6 +194,7 @@ namespace Demo.ViewModel
             MyText = "";
             SearchTerm = "";
             ChatMessages.Clear();
+            ButtonHistory = "True";
             NetworkManager.HandleDisconnection();
         }
 
