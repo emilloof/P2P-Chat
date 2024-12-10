@@ -407,11 +407,10 @@ namespace Demo.ViewModel
             Application.Current.Dispatcher.Invoke(() =>
             {
                 Debug.WriteLine("ChatHistoy: " + ChatHistory);
-
                 ChatHistoryCollection.Clear();
 
                 var sortedChatHistory = ChatHistory
-                    .OrderBy(chat => chat.Messages[0].DateTime) // Sorting by the DateTime of the first message
+                    .OrderByDescending(chat => chat.Messages[chat.Messages.Count() - 1].DateTime) // Sorting by the DateTime of the first message
                     .ToList();
 
                 foreach (Chat chat in sortedChatHistory)
